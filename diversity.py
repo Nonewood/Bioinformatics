@@ -9,7 +9,7 @@ Simple Introduction:
 Calculate the diversity index based on abundance file with pandas, only include number and shannon so far.
 Example: python3 diversity.py -i GeneCatalog_profile.xls.gz
 To be continued.
-mood:feel happy to do things, do not need to think sad things.
+mood:feel happy to do such things, do not need to think of bad things.
 ------------------'''
 )
 parser.add_argument('-i','--Input', help = "the abundance file.")
