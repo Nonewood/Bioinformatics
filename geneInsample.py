@@ -41,6 +41,11 @@ with open('GeneOfTen.txt','w') as gene:
     gene_10.to_csv(gene, sep='\t')
 per_10_rate = round(per_10/totalGene,2)
 
+#增加代码使其能够输出 10% 样品中存在基因的丰度表,这么简单让自己想半天...
+geneprofile_10 = df[sampleNum >= totalsample*0.1]
+with open('geneprofile_10','w') as profile:
+    geneprofile_10.to_csv(profile, sep='\t')
+
 per_20 = len(sampleNum[sampleNum >= totalsample*0.2])
 per_20_rate = round(per_20/totalGene,2)
 per_30 = len(sampleNum[sampleNum >= totalsample*0.3])
