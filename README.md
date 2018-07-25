@@ -33,5 +33,5 @@ plotIdGenerate.py: 统计丰度表中，所有大于 1（1%）的物种的 ID, �
 
 ***
 20180725  
-small_scipt.py 统计基因注释文件里，注释到门，属，种水平的基因个各有多少，全程用了 pandas, 用到了 pandas 的切分某列，将 None 替换为 Nan, 按照列计数，还有 unique 功能.  
+small_script.py 统计基因注释文件里，注释到门，属，种水平的基因个各有多少，全程用了 pandas, 用到了 pandas 的切分某列，将 None 替换为 Nan, 按照列计数，还有 unique 功能.  
 
