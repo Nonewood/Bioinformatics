@@ -20,6 +20,10 @@ abdfile = args.Input
 outdir = args.outdir if args.outdir else './'
 out = outdir + '/diversity.txt'
 
+if not abdfile:
+    parser.print_help()  # 如果不加参数，则打印 help 信息；
+    exit()
+
 if abdfile.endswith('gz'):
 	df = pd.read_csv(abdfile, compression='gzip', header=0, sep='\t')
 else:
