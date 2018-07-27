@@ -35,3 +35,8 @@ plotIdGenerate.py: 统计丰度表中，所有大于 1（1%）的物种的 ID, �
 20180725  
 small_script.py 统计基因注释文件里，注释到门，属，种水平的基因个各有多少，全程用了 pandas, 用到了 pandas 的切分某列，将 None 替换为 Nan, 按照列计数，还有 unique 功能.  
 
+***
+20180726  
+braycurtis.py 根据丰度文件计算 bray-curtis 距离，生成样品之间的距离矩阵，没有找到 python3 比较便捷的方法，所以自己用笨的办法写了脚本, 待完善;
+
+
