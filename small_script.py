@@ -1,3 +1,4 @@
+# 小脚本是什么鬼，涉及了某一列的分割，None 值的替换，计数，以及 uniques 功能
 #! /usr/bin/python3 
 import pandas as pd
 from numpy import nan
@@ -5,7 +6,7 @@ from numpy import nan
 df = pd.read_table('genome.list.filter.anno')
 tax = df['Taxonomy'].str.split(';', expand=True) # 按照分号将 'Taxonomy' 分割，并且储存成数据库格式
 tax.fillna(value=nan, inplace=True) # 将 None 替换为 Nan
-it2level= tax.count(axis=1) #按照列求和 
+it2level= tax.count(axis=1) #按照列计数 
 id2level.unique() # unique 功能
 (id2level == 2).sum()
 (id2level == 6).sum()
