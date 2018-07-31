@@ -43,3 +43,8 @@ braycurtis.py 根据丰度文件计算 bray-curtis 距离，生成样品之间�
 20180730  
 SplitbyRownames.py 根据行名包含哪些字符将数据框分开，R 对应的功能没有找到，但是 pyhton3 有，R 目前只知道根据行名筛选的（select）功能，待完善；  
 
+***
+20180731  
+heatmap.R # 根据计算出来的 braycurtis 距离矩阵，画热图，并且进行按照分组进行标识;  
+参考链接：[R语言绘制热图——pheatmap - CSDN博客](https://blog.csdn.net/sinat_38163598/article/details/72770404)  
+
