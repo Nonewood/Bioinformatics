@@ -50,5 +50,11 @@ heatmap.R 根据计算出来的 braycurtis 距离矩阵，画热图，并且进�
 
 boxplot.R 箱线图与差异检验（wilcox.test）  
 
+***  
+20180805  
+permutation.R 置换检验, Permutation test 置换检验是 Fisher于20世纪30年代提出的一种基于大量计算（computationally intensive），利用样本数据的全（或随机）排列，进行统计推断的方法，因其对总体分布自由，应用较为广泛，特别适用于总体分布未知的小样本资料， 以及某些难以用常规方法分析资料的假设检验问题。在具体使用上它和Bootstrap Methods类似，通过对样本进行顺序上的置换，重新计算统计检验量，构造经验分布，然后在此基础上求出P-value进行推断，简单记录;    
+参考链接：[置换检验（R语言实现）](https://blog.csdn.net/zhouyijun888/article/details/69524200)  
+
+
 
 
