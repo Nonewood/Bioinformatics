@@ -62,6 +62,8 @@ PCoA.R 看了好长时间的文献后，终于可以写脚本了，写好了 PCo
 还是写脚本比较舒服；  
 
 ***
-接下来写 permanova 分析吧，又叫 Adonis 分析;  
+20180816  
+anosim.R  anosim 分析，ANOSIM (analysis ofsimilarities) 分析，也叫相似性分析，主要是用于分析高维度数据组间，相似性的统计方法，比如我们经常做完PCoA、NMDS等降维分析的时候(如下图)，看着组,间样本是区分开的，但是缺少一个P值，说明这种差异到底是否显著。  
+参考链接：[什么是ANOSIM分析](http://www.360doc.com/content/18/0113/21/33459258_721682039.shtml)
 
 
