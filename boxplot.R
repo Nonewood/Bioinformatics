@@ -1,7 +1,8 @@
+library(dplyr)
 library(ggplot2)
 exp_div = read.table('exp_div.txt', header=T, row.names=1)
 ggplot(exp_div, aes(x=factor(exp_div$Group, level=c('CK','Cigarette','E-liquid')), y=exp_div$shannon, fill = Group)) + geom_boxplot() + labs(x="",y="shannon index") + theme(
-    axis.text = element_text(colour = 'black', size = 10),
+    axis.text = element_text(colour = 'black', size = 10), # 字号改成 20 放在 PPT 里比较合适
     axis.title = element_text(size = 10, face = 'bold'),
     axis.line = element_line(size=0.5, colour = "black"),
     legend.position = c(0,0),
