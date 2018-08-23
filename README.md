@@ -66,4 +66,8 @@ PCoA.R 看了好长时间的文献后，终于可以写脚本了，写好了 PCo
 anosim.R  anosim 分析，ANOSIM (analysis ofsimilarities) 分析，也叫相似性分析，主要是用于分析高维度数据组间，相似性的统计方法，比如我们经常做完PCoA、NMDS等降维分析的时候(如下图)，看着组,间样本是区分开的，但是缺少一个P值，说明这种差异到底是否显著。  
 参考链接：[什么是ANOSIM分析](http://www.360doc.com/content/18/0113/21/33459258_721682039.shtml)
 
+***
+20180823  
+upset.R 花了点儿时间摸索了个软件，可以代替 venn 图查看多个数据集的交集情况, [软件参考链接](http://caleydo.org/tools/upset/) 目前实现的功能还比较简单, 因为暂且不需要多复杂。  
+
 
