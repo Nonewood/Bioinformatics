@@ -72,5 +72,18 @@ upset.R 花了点儿时间摸索了个软件，可以代替 venn 图查看多个
 
 ***  
 20180824  
-增加 calypso.py 用来将物种丰度表的结果文件处理成 calypso 软件可以上传的格式；
+增加 calypso.py 用来将物种丰度表的结果文件处理成 calypso 软件可以上传的格式；  
+
+***
+20180920  
+好久没更新，因为没怎么写代码  
+重新写了 PCA 的 R 代码，增加两个主坐标的差异检验，并且标注显著差异的值，将三张图输出在一个 PDF;  
+同时会更新 PCoA.R 的代码;  
+部分参考链接:  
+[R语言可视化学习笔记之添加p-value和显著性标记 | Logos](https://ytlogos.github.io/2017/06/25/R%E8%AF%AD%E8%A8%80%E5%8F%AF%E8%A7%86%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B9%8B%E6%B7%BB%E5%8A%A0p-value%E5%92%8C%E6%98%BE%E8%91%97%E6%80%A7%E6%A0%87%E8%AE%B0/)  
+[R语言grid包使用笔记——viewport](https://blog.csdn.net/vivihe0/article/details/47188329)  
+[将多张图输出到一个或者多个 PDF 上](http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/81-ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page/)  
+
+
+
 
