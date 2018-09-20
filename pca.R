@@ -10,9 +10,8 @@ group = read.table(group_table, header=T, sep="\t", row.names = 1, check.names =
 color_var = unlist(strsplit(color_list, ":"))
 color_var = c(paste("#",color_var,sep=""))
 legend_list = unlist(strsplit(group_list, ":"))
-filename_prefix = gsub(":", "_", group_list)
+filename_prefix= gsub(":", "_", group_list)
 
-# PCA 图
 library(ade4)
 library(ggplot2)
 dt_t = t(dt)
@@ -35,6 +34,7 @@ pc = ggplot(pca,aes(x=Axis1,y=Axis2,col=Group,shape = Group)) +
 ## PC1 & PC2 箱线图
 library(ggpubr)
 pc1_diff = compare_means(Axis1 ~ Group, pca, method = "wilcox.test") ## default wilcox.test
+write.table(pc1_diff,file = paste(filename_prefix,"_pc1_Diffresult.txt",sep=""),sep = "\t",quote = F,row.names = F)
 diff_temp = as.data.frame(pc1_diff)
 diff_temp = diff_temp[which(diff_temp$p < 0.05),]
 my_comparisons = list()
@@ -53,6 +53,7 @@ pc1 = ggplot(pca,aes(x=Group, y=Axis1,colour=Group)) + geom_boxplot()+stat_compa
         legend.position='none',plot.margin = unit(c(0.4,0.3, 0, 0), 'in'))
 
 pc2_diff = compare_means(Axis2 ~ Group, pca, method = "wilcox.test") 
+write.table(pc2_diff,file = paste(filename_prefix,"_pc2_Diffresult.txt",sep=""),sep = "\t",quote = F,row.names = F)
 diff_temp = as.data.frame(pc2_diff)
 diff_temp = diff_temp[which(diff_temp$p < 0.05),]
 my_comparisons = list()
@@ -60,8 +61,8 @@ for (row in 1:nrow(diff_temp)) {
     diff_group <- as.character(diff_temp[row, c(2,3)])
     my_comparisons[[row]] = diff_group
 }
-pc2 = ggplot(pca,aes(x=Group, y=Axis2,colour=Group)) + geom_boxplot()+ stat_compare_means(comparisons= my_comparisons ,label = "p.signif", label.y = c(0.02,0.04,0.09) + max(pca$Axis1)) + scale_color_manual(values= color_var) +
-  labs(x="", y = "PC2") + scale_y_continuous(limits = c(min(pca$Axis1), max(pca$Axis1) + 0.1)) + 
+pc2 = ggplot(pca,aes(x=Group, y=Axis2,colour=Group)) + geom_boxplot()+ stat_compare_means(comparisons= my_comparisons ,label = "p.signif", label.y = c(0.02,0.04,0.09) + max(pca$Axis2)) + scale_color_manual(values= color_var) +
+  labs(x="", y = "PC2") + scale_y_continuous(limits = c(min(pca$Axis2), max(pca$Axis2) + 0.1)) + 
   theme(axis.text = element_text(colour = 'black', size = 8),
         axis.text.x = element_text(vjust = 0.7, angle = 15),
         axis.title = element_text(size = 10),
