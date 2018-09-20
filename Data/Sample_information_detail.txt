@@ -1,4 +1,4 @@
-ID	Sex	Group	Dose
+SampleID	Sex	Group	Dose
 ACK-F1	F	CK	ACK
 ACK-F2	F	CK	ACK
 ACK-F3	F	CK	ACK
