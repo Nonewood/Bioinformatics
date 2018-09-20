@@ -12,6 +12,7 @@ color_var = c(paste("#",color_var,sep=""))
 legend_list = unlist(strsplit(group_list, ":"))
 filename_prefix = gsub(":", "_", group_list)
 
+# PCA 图
 library(ade4)
 library(ggplot2)
 dt_t = t(dt)
