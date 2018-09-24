@@ -88,5 +88,5 @@ upset.R 花了点儿时间摸索了个软件，可以代替 venn 图查看多个
 20180924  
 乘着中秋放假，增加 adonis 分析的脚本 adonis.R, 比较简单，后边肯定还得继续完善;  
 祝自己中秋快乐咯，需要努力学习;  
-只剩下钢琴配我谈了一天;  
+只剩下钢琴陪我谈了一天;  
 参考链接: [RPubs - Multivariate analyses of variance](https://rpubs.com/collnell/manova)  
