@@ -84,6 +84,14 @@ upset.R 花了点儿时间摸索了个软件，可以代替 venn 图查看多个
 [R语言grid包使用笔记——viewport](https://blog.csdn.net/vivihe0/article/details/47188329)  
 [将多张图输出到一个或者多个 PDF 上](http://www.sthda.com/english/articles/24-ggpubr-publication-ready-plots/81-ggplot2-easy-way-to-mix-multiple-graphs-on-the-same-page/)  
 
+***
+20180924  
+乘着中秋放假，增加 adonis 分析的脚本 adonis.R, 比较简单，后边肯定还得继续完善;  
+祝自己中秋快乐咯，需要努力学习;  
+只剩下钢琴配我谈了一天;  
+参考链接: [RPubs - Multivariate analyses of variance](https://rpubs.com/collnell/manova)  
 
 
 
+乘着中秋放假，增加 adonis 分析的脚本 adonis.R祝自己中秋快乐咯，需要努力学习;刚
+乘着中秋放假，增加 adonis 分析的脚本 adonis.R祝自己中秋快乐咯，需要努力学习;
