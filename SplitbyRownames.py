@@ -6,5 +6,8 @@ expose_diversity.to_csv('expose_diversity', sep='\t')
 recovery_diversity.to_csv('recovery_diversity', sep='\t')
 
 #补充用法，增加单独筛选行或者列的用法，一旦不用就老是忘记....
+dt = pd.read_table('genusProfileTable.xls', header = 0, index_col = 0, sep="\t")
 expose_dt = dt.loc[:,dt.columns.str.contains('-a') == False]
-recovery_dt = dt.loc[:,dt.columns.str.contains('-a')]  #注意冒号的使用，代表全部！
+recovery_dt = dt.loc[:,dt.columns.str.contains('-a')]   #注意冒号的使用，代表全部！
+expose_dt.to_csv('expose_genusProfileTable.xls', sep='\t')
+recovery_dt.to_csv('recovery_genusProfileTable.xls', sep='\t')
