@@ -6,7 +6,7 @@ find.mean<-function(x){    #计算 A,B 标签对应数据的均值差
 mean(x[group=="A",2])-mean(x[group=="B",2])  
 }
 mean_obs = find.mean(data) #计算实际数据的均值差
-results<-replicate(999,find.mean(data.frame(group,sample(data[,2]))))    #随机打乱 28 个数据，赋予标签 A,B，计算对应的均值差，重复 999 词
+results<-replicate(999,find.mean(data.frame(group,sample(data[,2]))))    #随机打乱 28 个数据，赋予标签 A,B，计算对应的均值差，重复 999 次
 p.value<-length(results[results>mean(data[group=="A",2])-mean(data[group=="B",2])])/1000 #统计大于实际均值差的均值比例；
 hist(results,breaks=20,prob=TRUE)  #画图
 lines(density(results))   #加拟合线
