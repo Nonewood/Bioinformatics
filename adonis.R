@@ -1,4 +1,5 @@
 #! /usr/bin/R
+#Eg: Rscript adonis.R expose_abd.txt Sample_information_detail.txt Group
 library(vegan)
 Args <- commandArgs(TRUE)
 abd_table = Args[1]  # 丰度文件 expose_abd.txt 
