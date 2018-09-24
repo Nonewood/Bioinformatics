@@ -3,7 +3,9 @@
 #！/usr/bin/python3
 import pandas as pd
 import argparse
-import pandas as pd
+import matplotlib
+matplotlib.use('Agg') # 不加这个画图的时候会报错
+
 parser = argparse.ArgumentParser(
     formatter_class=argparse.RawDescriptionHelpFormatter,
     description='''
