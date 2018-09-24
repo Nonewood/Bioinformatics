@@ -4,7 +4,7 @@ library(vegan)
 Args <- commandArgs(TRUE)
 abd_table = Args[1]  # 丰度文件 expose_abd.txt 
 group_table = Args[2] # 分组文件 Sample_information_detail.txt 
-var = Args[3] # 需要做检验的组别名字 Group
+var = Args[3] # 需要做检验的组别名字 Group 或者 Sex 之类的
 
 outfile = paste(var,"Adonis.txt", sep="") 
 dt = read.table(abd_table, header=T, row.names=1, sep="\t", check.names=F)
