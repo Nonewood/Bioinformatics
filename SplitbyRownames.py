@@ -11,3 +11,11 @@ expose_dt = dt.loc[:,dt.columns.str.contains('-a') == False]
 recovery_dt = dt.loc[:,dt.columns.str.contains('-a')]   #注意冒号的使用，代表全部！
 expose_dt.to_csv('expose_genusProfileTable.xls', sep='\t')
 recovery_dt.to_csv('recovery_genusProfileTable.xls', sep='\t')
+
+#增加通过正则表达式的筛选
+import pandas as pd
+dt = pd.read_table('expose_genusProfileTable.xls', header=0, index_col=0)
+dt_F = dt.loc[:, dt.columns.str.contains('M\d',regex=True) == False]
+dt_F.to_csv('expose_F_genusProfileTable.xls', sep="\t")
+dt_M = dt.loc[:, dt.columns.str.contains('M\d',regex=True)]
+dt_M.to_csv('expose_M_genusProfileTable.xls', sep="\t")
