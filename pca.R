@@ -14,7 +14,8 @@ filename_prefix= gsub(":", "_", group_list)
 
 library(ade4)
 library(ggplot2)
-dt_t = t(dt)
+#dt_t = t(dt)
+dt_t = t(sqrt(dt)) # 原始数据预处理
 dt.dudi <- dudi.pca(dt_t,center=TRUE,scale=F,scannf=F,nf=4)
 pca = cbind(dt.dudi$li,group)
 pca$Group = factor(pca$Group, levels=legend_list)
@@ -37,6 +38,7 @@ pc1_diff = compare_means(Axis1 ~ Group, pca, method = "wilcox.test") ## default 
 write.table(pc1_diff,file = paste(filename_prefix,"_pc1_Diffresult.txt",sep=""),sep = "\t",quote = F,row.names = F)
 diff_temp = as.data.frame(pc1_diff)
 diff_temp = diff_temp[which(diff_temp$p < 0.05),]
+if (nrow(diff_temp) > 0 ) {  # 增加所有差异检验不显著结果的处理
 my_comparisons = list()
 for (row in 1:nrow(diff_temp)) {
     diff_group <- as.character(diff_temp[row, c(2,3)])
@@ -51,11 +53,22 @@ pc1 = ggplot(pca,aes(x=Group, y=Axis1,colour=Group)) + geom_boxplot()+stat_compa
         axis.line = element_line(size=0.5, colour = "black"),
         legend.key = element_blank(), legend.title = element_blank(),
         legend.position='none',plot.margin = unit(c(0.4,0.3, 0, 0), 'in'))
-
+} else {
+pc1 = ggplot(pca,aes(x=Group, y=Axis1,colour=Group)) + geom_boxplot() + scale_color_manual(values= color_var) +
+  labs(x="", y = "PC1") +
+  theme(axis.text = element_text(colour = 'black', size = 8,),
+        axis.text.x = element_text(vjust = 0.7, angle = 15),
+        axis.title = element_text(size = 10),
+        panel.background = element_blank(),
+        axis.line = element_line(size=0.5, colour = "black"),
+        legend.key = element_blank(), legend.title = element_blank(),
+        legend.position='none',plot.margin = unit(c(0.4,0.3, 0, 0), 'in'))
+  
 pc2_diff = compare_means(Axis2 ~ Group, pca, method = "wilcox.test") 
 write.table(pc2_diff,file = paste(filename_prefix,"_pc2_Diffresult.txt",sep=""),sep = "\t",quote = F,row.names = F)
 diff_temp = as.data.frame(pc2_diff)
 diff_temp = diff_temp[which(diff_temp$p < 0.05),]
+if (nrow(diff_temp) > 0 ) { # 同上
 my_comparisons = list()
 for (row in 1:nrow(diff_temp)) {
     diff_group <- as.character(diff_temp[row, c(2,3)])
@@ -70,7 +83,16 @@ pc2 = ggplot(pca,aes(x=Group, y=Axis2,colour=Group)) + geom_boxplot()+ stat_comp
         axis.line = element_line(size=0.5, colour = "black"),
         legend.key = element_blank(), legend.title = element_blank(),
         legend.position='none',plot.margin = unit(c(0, 0.3, 0.1, 0), 'in'))
-
+} else {
+pc2 = ggplot(pca,aes(x=Group, y=Axis2,colour=Group)) + geom_boxplot() + scale_color_manual(values= color_var) +
+  labs(x="", y = "PC2") +
+  theme(axis.text = element_text(colour = 'black', size = 8),
+        axis.text.x = element_text(vjust = 0.7, angle = 15),
+        axis.title = element_text(size = 10),
+        panel.background = element_blank(),
+        axis.line = element_line(size=0.5, colour = "black"),
+        legend.key = element_blank(), legend.title = element_blank(),
+        legend.position='none',plot.margin = unit(c(0, 0.3, 0.1, 0), 'in'))
 #output
 pdf(paste(filename_prefix,"_PCA.pdf",sep=""),width=6,height=4)
 library(grid)
