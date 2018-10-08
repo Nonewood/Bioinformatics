@@ -48,6 +48,7 @@ pcoa1_diff = compare_means(Axis.1 ~ Group, Merge.result) ## default wilcox.test
 write.table(pcoa1_diff,file = paste(filename_prefix,"_pcoa1_Diffresult.txt",sep=""),sep = "\t",quote = F,row.names = F)
 diff_temp = as.data.frame(pcoa1_diff)
 diff_temp = diff_temp[which(diff_temp$p < 0.05),]
+if (nrow(diff_temp) > 0 ) {   # 增加没有差异检验结果显著的判断
 my_comparisons = list()
 for (row in 1:nrow(diff_temp)) {
     diff_group <- as.character(diff_temp[row, c(2,3)])
@@ -63,11 +64,23 @@ pcoa1 = ggplot(Merge.result,aes(x=Group, y=Axis.1,colour=Group)) + geom_boxplot(
         axis.line = element_line(size=0.5, colour = "black"),
         legend.key = element_blank(), legend.title = element_blank(),
         legend.position='none',plot.margin = unit(c(0.4,0.3, 0, 0), 'in'))
+} else {
+pcoa1 = ggplot(Merge.result,aes(x=Group, y=Axis.1,colour=Group)) + geom_boxplot() +
+  scale_color_manual(values= color_var) + labs(x="", y = "PCoA1") +
+  theme(axis.text = element_text(colour = 'black', size = 8,),
+        axis.text.x = element_text(vjust = 0.7, angle = 15),
+        axis.title = element_text(size = 10),
+        panel.background = element_blank(),
+        axis.line = element_line(size=0.5, colour = "black"),
+        legend.key = element_blank(), legend.title = element_blank(),
+        legend.position='none',plot.margin = unit(c(0.4,0.3, 0, 0), 'in'))
+}
 
 pcoa2_diff = compare_means(Axis.2 ~ Group, Merge.result) ## default wilcox.test 
 write.table(pcoa2_diff,file = paste(filename_prefix,"_pcoa2_Diffresult.txt", sep=""),sep = "\t",quote = F,row.names = F)
 diff_temp = as.data.frame(pcoa2_diff)
 diff_temp = diff_temp[which(diff_temp$p < 0.05),]
+if (nrow(diff_temp) > 0 ) {  # 同上
 my_comparisons = list()
 for (row in 1:nrow(diff_temp)) {
     diff_group <- as.character(diff_temp[row, c(2,3)])
@@ -83,6 +96,17 @@ pcoa2 = ggplot(Merge.result,aes(x=Group, y=Axis.2,colour=Group)) + geom_boxplot(
         axis.line = element_line(size=0.5, colour = "black"),
         legend.key = element_blank(), legend.title = element_blank(),
         legend.position='none',plot.margin = unit(c(0, 0.3, 0.1, 0), 'in'))
+} else {
+pcoa2 = ggplot(Merge.result,aes(x=Group, y=Axis.2,colour=Group)) + geom_boxplot() +
+  scale_color_manual(values= color_var) + labs(x="", y = "PCoA2") +
+  theme(axis.text = element_text(colour = 'black', size = 8),
+        axis.text.x = element_text(vjust = 0.7, angle = 15),
+        axis.title = element_text(size = 10),
+        panel.background = element_blank(),
+        axis.line = element_line(size=0.5, colour = "black"),
+        legend.key = element_blank(), legend.title = element_blank(),
+        legend.position='none',plot.margin = unit(c(0, 0.3, 0.1, 0), 'in'))
+}
 #output
 pdf(paste(filename_prefix,"_PCoA.pdf",sep=""),width=6,height=4)
 library(grid)
