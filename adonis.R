@@ -14,6 +14,6 @@ DT.mat = sqrt(DT)
 DT.dist <- vegdist(DT.mat, method="bray")
 set.seed(1)
 run <- paste("DT.div = adonis2(formula=DT.dist~",var,",data=group,permutations=9999)",sep="")
-eval(parse(text = run))
+eval(parse(text = run)) # 首先使用 parse() 函数将字符串转化为表达式(expression),再使用 eval() 函数对表达式求解
 write.table(DT.div, file=outfile, quote = F, sep="\t", col.names=NA) #保持第一行第一列的空白位置
 #write.table(data.frame("Name"=rownames(DT.div),DT.div,check.names=F), file=outfile, quote = F, sep="\t", row.names=F) #或者给第一行第一列的位置赋值
