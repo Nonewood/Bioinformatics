@@ -52,19 +52,3 @@ with open(removeHostList,'r') as IN:
 		print('gunzip -c ' + rmfq1 + ' > ' + gunzip_rmfq1_path, file=out)
 		print('gunzip -c ' + rmfq2 + ' > ' +  gunzip_rmfq2_path, file=out)
 		print(metawrap_path + ' assembly -1 ' + gunzip_rmfq1_path + ' -2 ' + gunzip_rmfq2_path + ' -m 100 -t 20 -o ' + processIDdir, file=out)  # later change the par
-
-
-
-
-
- 		
-
-
-
-
-	
-
-
-
-
-	
