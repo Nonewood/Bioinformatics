@@ -6,7 +6,7 @@ parser = argparse.ArgumentParser(
 -------------------
 Simple Introduction:
 Generate the assembly script for each sample.
-Example: python3 diversity.py -i GeneCatalog_profile.xls.gz
+Example: python3 getScript.py -i  RemoveHost_Data.list -o Outdir
 To be continued.
 ------------------'''
 )
