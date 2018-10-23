@@ -103,3 +103,9 @@ upset.R 花了点儿时间摸索了个软件，可以代替 venn 图查看多个
 ***  
 20181022  
 越来越忙了，增加了批量生成 metawrap 组装的脚本 getScript.py，果然需要批量生成..任何手动的东西真是太可恶了！  
+
+***  
+20181023
+增加了 anova 的脚本，包括方差齐性检验，正态分布检验，mean+se 的柱状图输出。断断续续终于写完了，还不是很完善，也没有弄成通用的，因为时间
+不怎么够用，等下下次需要用的时候再改吧。 写得过程中参考了很多有用的博客，如 [One-Way ANOVA Test in R - Easy Guides - Wiki - STHDA](http://www.sthda.com/english/wiki/one-way-anova-test-in-r), [Plotting means and error bars (ggplot2)](http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/), 非常感谢~ 同时好多想要的功能也没有完善，后续有需要再修改吧。  
+
