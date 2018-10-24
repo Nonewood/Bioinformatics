@@ -6,19 +6,19 @@ parser = argparse.ArgumentParser(
 -------------------
 Simple Introduction:
 Generate the assembly script for each sample.
-Example: python3 getScript.py -i  RemoveHost_Data.list -o Outdir
+Example: python3 diversity.py -i GeneCatalog_profile.xls.gz
 To be continued.
 ------------------'''
 )
 parser.add_argument('-i','--Input', help = "the RemoveHost_Data.list file.")
-#parser.add_argument('-s','--shell', help = "the directory for shell scripts.")
+parser.add_argument('-s','--tool', help = "megahit (default) or metaspades.")
 #parser.add_argument('-p','--process', help = "the directory for results.")
 parser.add_argument('-o','--outdir',help = "the output directory, full path.")
 #parser.add_argument('-o','--outdir',help = "the output directory,default is current working directory.",nargs='?')
 parser.add_argument("-v", "--version",action='version', version='%(prog)s 1.0')
 args = parser.parse_args()
-(removeHostList,outdir) = (args.Input, args.outdir)
-par = [removeHostList,outdir]
+(removeHostList,tool,outdir) = (args.Input,args.tool,args.outdir)
+par = [removeHostList,tool,outdir]
 
 if not all(par):
 	parser.print_help()
@@ -51,4 +51,7 @@ with open(removeHostList,'r') as IN:
 		print('export PATH=/ifswh1/BC_PS/wangpeng7/Software/metaSPAdes/SPAdes-3.13.0-Linux/bin:$PATH', file=out)
 		print('gunzip -c ' + rmfq1 + ' > ' + gunzip_rmfq1_path, file=out)
 		print('gunzip -c ' + rmfq2 + ' > ' +  gunzip_rmfq2_path, file=out)
-		print(metawrap_path + ' assembly -1 ' + gunzip_rmfq1_path + ' -2 ' + gunzip_rmfq2_path + ' -m 100 -t 20 --metaspades -o ' + processIDdir, file=out)  # later change the par
+		if tool == 'metaspades':
+			print(metawrap_path + ' assembly -1 ' + gunzip_rmfq1_path + ' -2 ' + gunzip_rmfq2_path + ' -m 100 -t 20 --metaspades -o ' + processIDdir, file=out)  # later change the par
+		else:
+			print(metawrap_path + ' assembly -1 ' + gunzip_rmfq1_path + ' -2 ' + gunzip_rmfq2_path + ' -m 100 -t 20 --megahit -o ' + processIDdir, file=out)
