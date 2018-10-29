@@ -50,7 +50,7 @@ with open(removeHostList,'r') as IN:
 		print('export PATH=/ifswh1/BC_PS/wangpeng7/Software/metaWRAP-181018/bin:$PATH', file=out)
 		print('export PATH=/ifswh1/BC_PS/wangpeng7/Software/metaSPAdes/SPAdes-3.13.0-Linux/bin:$PATH', file=out)
 		print('export PATH=/ifswh1/BC_PUB/biosoft/BC_NQ/01.Soft/03.Soft_ALL/Python-2.7.5/Built/bin:$PATH', file=out) # for quast
-		print('exprot PATH=/ifswh1/BC_PUB/biosoft/pipeline/MICRO/Meta/Meta_Metagenomic_Survey_2017a/modules/Assembly/Assembly_megahit/bin/megahit:$PATH', file=out)
+		print('export PATH=/ifswh1/BC_PUB/biosoft/pipeline/MICRO/Meta/Meta_Metagenomic_Survey_2017a/modules/Assembly/Assembly_megahit/bin/megahit:$PATH', file=out)
 		print('gunzip -c ' + rmfq1 + ' > ' + gunzip_rmfq1_path, file=out)
 		print('gunzip -c ' + rmfq2 + ' > ' +  gunzip_rmfq2_path, file=out)
 		if tool == 'metaspades':
