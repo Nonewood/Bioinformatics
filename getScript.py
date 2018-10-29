@@ -43,8 +43,8 @@ with open(removeHostList,'r') as IN:
 		shellfile_path = shellIDdir + '/' + ID + '_assembly.sh'
 		processIDdir = processdir + '/' + ID 
 		os.makedirs(processIDdir) # make sample dir
-		gunzip_rmfq1_path = processIDdir +'/' + ID + '.RemoveHost_1.fq'
-		gunzip_rmfq2_path = processIDdir +'/' + ID + '.RemoveHost_2.fq'
+		gunzip_rmfq1_path = processIDdir +'/' + ID + '.RemoveHost_1.fastq'
+		gunzip_rmfq2_path = processIDdir +'/' + ID + '.RemoveHost_2.fastq'
 		metawrap_path = '/ifswh1/BC_PUB/biosoft/BC_NQ/01.Soft/03.Soft_ALL/metaWRAP-181018/bin/metawrap'
 		out = open(shellfile_path,'w') 
 		print('export PATH=/ifswh1/BC_PS/wangpeng7/Software/metaWRAP-181018/bin:$PATH', file=out)
