@@ -1,0 +1,14 @@
+# 无需输入密码传输文件，与一个 shell 脚本 data_delivery_rsyncs.sh 联合使用实现批量传输，但是比较简陋。
+#!/usr/bin/expect -f
+  set src_file [lindex $argv 0]
+  set dest_dir [lindex $argv 1]
+  set user [lindex $argv 2]
+  set password [lindex $argv 3]
+  set host [lindex $argv 4]
+  set timeout -1
+
+  spawn rsync -avl $src_file $user@$host:$dest_dir
+  expect "*assword:"
+  send "$password\r"
+  expect "total"
+  expect eof
