@@ -1,0 +1,14 @@
+# 同样免密用于数据传输
+#!/usr/bin/expect -f
+  set src_file [lindex $argv 0]
+  set dest_dir [lindex $argv 1]
+  set user account
+  set host ip
+  set password password
+  set timeout -1
+
+  spawn scp $src_file $user@$host:$dest_dir
+  expect "*assword:"
+  send "$password\r"
+  expect "100%"
+  expect eof
