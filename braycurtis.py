@@ -1,8 +1,8 @@
 from scipy.spatial import distance
 import pandas as pd
 dt = pd.read_table('GeneCatalog_profile.xls')
-dt.index = dt['geneID']
-dt.drop(['geneID'], axis=1, inplace=True)
+#dt.index = dt['geneID']
+#dt.drop(['geneID'], axis=1, inplace=True)   忘记了为啥加上这两行....
 with open('braycurtis.txt', 'w') as bray:
     print('\t' + '\t'.join(dt.columns.values), file = bray)
     for first in dt.columns.values:
