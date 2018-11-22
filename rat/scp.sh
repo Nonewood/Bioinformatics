@@ -1,4 +1,4 @@
 for x in `ls *pdf`
 do
-	expect cp.expect $x /Users/tongxueer/Documents/20180116-大鼠项目/genus
+	expect scp.expect $x /Users/tongxueer/Documents/20180116-大鼠项目/genus
 done
