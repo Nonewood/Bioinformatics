@@ -1,8 +1,8 @@
 #! /usr/bin/Rscript
 #eg: Rscript alpha_boxplot.R expose_abd.txt Sample_information_detail.txt CK:E-liquid:Cigarette 67ab57:487eb3:d2382c 
-library(Rcpp,lib.loc="/ifshk7/BC_PS/wangpeng7/R_lib")
-library(tidyr,lib.loc="/ifshk7/BC_PS/wangpeng7/R_lib")
-library(tidyselect,lib.loc="/ifshk7/BC_PS/wangpeng7/R_lib")
+library(Rcpp,lib.loc="R_lib")
+library(tidyr,lib.loc="R_lib")
+library(tidyselect,lib.loc="R_lib")
 Args <- commandArgs(TRUE)
 input = Args[1]  # alpha diversity file, including number and shannon
 group = Args[2]  # F_Sample_information_detail.xls
