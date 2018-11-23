@@ -1,4 +1,5 @@
 #! /usr/bin/python3
+# 利用 python 筛选数据，主要是使用 dt.columns.str.contains 这个功能，屡试不爽，即可以正则匹配，又可以使用运算符！
 import pandas as pd
 import argparse,os,re
 parser = argparse.ArgumentParser(
@@ -7,7 +8,7 @@ parser = argparse.ArgumentParser(
 -------------------
 Simple Introduction:
 choose columns of the file by characters in rownames or colnames
-Example: /ifshk7/BC_PS/wangpeng7/Software/Python-3.6.4/Build/bin/python3 split.py -i expose_genusProfileTable.xls -g Sample_information_detail.txt -s Cig-F:EL-F -o ./ 
+Example: python3 split.py -i expose_genusProfileTable.xls -g Sample_information_detail.txt -s Cig-F:EL-F -o ./ 
 To be continued.
 ------------------'''
 )
