@@ -17,7 +17,8 @@ library(ggplot2)
 #dt_t = t(dt)
 dt_t = t(sqrt(dt)) # 原始数据预处理
 dt.dudi <- dudi.pca(dt_t,center=TRUE,scale=F,scannf=F,nf=4)
-pca = cbind(dt.dudi$li,group)
+#pca = cbind(dt.dudi$li,group)
+merge(dt.dudi$li,group,by="row.names") #原来的合并方式太危险啦
 pca$Group = factor(pca$Group, levels=legend_list)
 pc1 = round(100*dt.dudi$eig[1]/sum(dt.dudi$eig),2)
 pc2 = round(100*dt.dudi$eig[2]/sum(dt.dudi$eig),2)
