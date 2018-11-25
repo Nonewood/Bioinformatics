@@ -5,8 +5,8 @@ abd_table = Args[1]  # 丰度文件 expose_abd.txt
 group_table = Args[2] # 分组文件 Sample_information_detail.txt
 group_list = Args[3] # CK:E-liquid:Cigarette
 color_list = Args[4] # 67ab57:487eb3:d2382c
-dt = read.table(abd_table, header = T,sep = '\t', row.names = 1, check.names = F)
-group = read.table(group_table, header=T, sep="\t", row.names = 1, check.names = F) 
+dt = read.table(abd_table, header = T,sep = '\t', row.names = 1, check.names = F, comment.char="")
+group = read.table(group_table, header=T, sep="\t", row.names = 1, check.names = F,comment.char="") 
 color_var = unlist(strsplit(color_list, ":"))
 color_var = c(paste("#",color_var,sep=""))
 legend_list = unlist(strsplit(group_list, ":"))
