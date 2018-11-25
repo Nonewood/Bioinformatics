@@ -1,5 +1,8 @@
 #! /usr/bin/python3
 import sys,os,shutil
+if len(sys.argv) != 3:
+    print('you silly fool~~ (hahaha kidding,please check your parameters)')
+    exit()
 betadir = sys.argv[1]
 abdfile = sys.argv[2]
 title = sys.argv[3]
