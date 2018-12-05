@@ -3,6 +3,7 @@ library(ggpubr)
 library("ggplot2")
 library("ape")
 library("vegan")
+library(ggrepel)
 Args <- commandArgs(TRUE)
 abd_table = Args[1]  # 丰度文件 expose_abd.txt 
 group_table = Args[2] # 分组文件 Sample_information_detail.txt 
@@ -29,6 +30,7 @@ ylab=paste("PCoA2(",pco2,"%)",sep="")
 Merge.result$Group = factor(Merge.result$Group, levels=legend_list)
 pcoa = ggplot(Merge.result,aes(Axis.1,Axis.2)) +
        geom_point(size=3,aes(color=Group,shape=Group)) + 
+       geom_text_repel(aes(label = SampleID)) + #加标签	
        scale_color_manual(values = color_var) + 
        geom_hline(yintercept=0,linetype=4,color="grey") +
        geom_vline(xintercept=0,linetype=4,color="grey") +
