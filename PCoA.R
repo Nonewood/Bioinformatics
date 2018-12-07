@@ -111,6 +111,7 @@ pcoa2 = ggplot(Merge.result,aes(x=Group, y=Axis.2,colour=Group)) + geom_boxplot(
 }
 #output
 pdf(paste(filename_prefix,"_PCoA.pdf",sep=""),width=6,height=4)
+png(paste(filename_prefix,"_PCoA.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
 library(grid)
 library("gridBase")
 plot.new()
