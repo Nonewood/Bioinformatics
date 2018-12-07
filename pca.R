@@ -96,6 +96,7 @@ pc2 = ggplot(pca,aes(x=Group, y=Axis2,colour=Group)) + geom_boxplot() + scale_co
         legend.position='none',plot.margin = unit(c(0, 0.3, 0.1, 0), 'in'))
 #output
 pdf(paste(filename_prefix,"_PCA.pdf",sep=""),width=6,height=4)
+png(paste(filename_prefix,"_PCA.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent") # 增加 png 的输出, 方便做 PPT。。。
 library(grid)
 library("gridBase")
 plot.new()
