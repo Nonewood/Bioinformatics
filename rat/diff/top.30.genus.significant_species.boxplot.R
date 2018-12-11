@@ -1,6 +1,7 @@
-library("reshape2",lib.loc="/ifshk4/BC_PUB/biosoft/newblc/03.Soft_ALL/R-3.4.1/library")
-library("ggplot2",lib.loc="/ifshk4/BC_PUB/biosoft/newblc/03.Soft_ALL/R-3.4.1/library")
-data <- read.table("/ifshk5/BC_COM_P11/F17FTSNCWLJ2520/HUMrwdM/Test/new/Profile/boxplot/top.30.genus.log.txt.tt.boxplot.txt",header=T,check.name=F,sep="\t")
+
+library("reshape2",lib.loc="R-3.4.1/library")
+library("ggplot2",lib.loc="R-3.4.1/library")
+data <- read.table("top.30.genus.log.txt.tt.boxplot.txt",header=T,check.name=F,sep="\t")
 data1 <- melt(data)
 data1$group <- factor(data1$group,levels=c("Healthy","SCAD","UA","MI"))
 color <- c("#4daf4a","#377eb8","#984ea3","#e41a1c")
@@ -25,9 +26,9 @@ plot = ggplot(data1, aes(x=variable, y = value, color = group)) +
 		plot.margin = unit(c(0.1, 0.1, 0.1, 0.15), "in")
 )
 
-# 加差异显著的 * 或者 **, 目前只支持pvalue 的 0.05 和 0.01, 后边按需修改就好
+# 加差异显著的 * 或者 **, 目前只支持pvalue 的 0.05 和 0.01, 后边按需修改就好, 利用下边的这段代码，其实可以对任意差异检验的的结果进行显著性标注，只要有上边的箱线图文件和下边的差异检验结果文件
 library(dplyr)
-diff_result = "/ifshk5/BC_COM_P11/F17FTSNCWLJ2520/HUMrwdM/Test/new/Diff_species/genus/Healthy-SCAD-UA-MI/Healthy-SCAD-UA-MI/Healthy-SCAD-UA-MI.Healthy-SCAD-UA-MI.kruskal.test.xls" # 同样是外参
+diff_result = "Healthy-SCAD-UA-MI.Healthy-SCAD-UA-MI.kruskal.test.xls" # 需要改成外参
 x_order = levels(data1$variable)
 group_order = c("Healthy","SCAD","UA","MI")     # 改成外参
 color_order = c("#4daf4a","#377eb8","#984ea3","#e41a1c") #改成外参数，颜色需要和组别对应
