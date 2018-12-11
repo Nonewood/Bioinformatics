@@ -1,4 +1,4 @@
-#! /usr/bin/Rscript  #待完善
+#! /usr/bin/Rscript  #待完善，两组数据的箱线图，实现横坐标的排序和显著性差异标记，待完善，由同目录下 python3 脚本调用一步实现
 library(ggplot2)
 library(dplyr)
 Args = commandArgs(TRUE)
