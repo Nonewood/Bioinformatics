@@ -68,5 +68,6 @@ for (i in 1:length(diffID_sig)) {
 }
 
 pdf(paste(filename_prefix,"_boxplot.pdf",sep=""),width=6,height=4)
+png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
 plot + annotate('text', x = diff_x, y = -2, label='*', size = 5) + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
 dev.off()
