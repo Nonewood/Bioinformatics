@@ -1,11 +1,13 @@
-#! /usr/bin/Rscript  #待完善，两组数据的箱线图，实现横坐标的排序和显著性差异标记，待完善，由同目录下 python3 脚本调用一步实现
+#! /usr/bin/Rscript 
+
 library(ggplot2)
 library(dplyr)
 Args = commandArgs(TRUE)
 box_table = Args[1] # boxplot.txt
 group_list = Args[2] # EL:Cig
 color_list = Args[3] # 487eb3:d2382c
-diff_result = Args[4] # filter_EL_Cig.E-liquid-Cigarette.wilcox.test.xls
+diff_result = Args[4] # EL_Cig.E-liquid-Cigarette.wilcox.test.xls
+diff_type = Args[5] # pvalue or qvalue
 legend_list = c(unlist(strsplit(group_list, ":")))
 color_var = unlist(strsplit(color_list, ":"))
 color_var = c(paste("#",color_var,sep=""))
@@ -49,25 +51,46 @@ theme(
 	plot.margin = unit(c(0.2, 0.2, 0.1, 0.2), 'in')
 )
 
-# 加差异显著的 * 或者 **, 目前只支持 0.05 和 0.01
+# 加差异显著的 * 或者 **, 目前只支持 0.05 和 0.01 
 df = read.table(diff_result, header=T, sep="\t", check.names = F)
-diffID_sig = filter(df, pvalue < 0.01)$ID
-diffID = filter(df, pvalue > 0.01)$ID
+diffID_sig = filter(df, UQ(as.name(diff_type)) < 0.01)$ID
+diffID = filter(df, UQ(as.name(diff_type)) > 0.01 & UQ(as.name(diff_type)) < 0.05)$ID
 diff_x  = c()
+if ( length(diffID) == 0) {
+	print(paste("no tax is different for",diff_type,"!",sep=" "))
+	q()
+}
 for (i in 1:length(diffID)) {
     if ( diffID[i] %in% x_order) {
-            diff_x = c(diff_x,(which(x_order == diffID[i])))
+            diff_x = c(diff_x,(which(x_order == diffID[i])))        
     }
 }
 
-diff_sig_x  = c()
-for (i in 1:length(diffID_sig)) {
-    if ( diffID_sig[i] %in% x_order) {
-            diff_sig_x = c(diff_sig_x,(which(x_order == diffID_sig[i])))
-    }
+if (length(diffID_sig != 0) {
+	diff_sig_x  = c()
+	for (i in 1:length(diffID_sig)) {
+   		if ( diffID_sig[i] %in% x_order) {
+            diff_sig_x = c(diff_sig_x,(which(x_order == diffID_sig[i])))        
+   		}
+	}
+} 
+if (is.null(diff_x) & is.null(diff_sig_x)) {
+    print("no tax is different! check your data!")
+} else if ( !is.null(diff_x) & is.null(diff_sig_x)) {
+    #pdf(paste(filename_prefix,"_boxplot.pdf",sep=""),width=6,height=4)
+    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
+	postscript(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height=4)
+    plot + annotate('text', x = diff_x, y = -2, label='*', size = 5)
+#	ggsave(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height = 4, units = "in")	
+} else if ( is.null(diff_x) & !is.null(diff_sig_x)) {
+#    pdf(paste(filename_prefix,"_boxplot.pdf",sep=""),width=6,height=4)
+    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
+	postscript(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height=4)
+    plot + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
+} else {
+#   pdf(paste(filename_prefix,"_boxplot.pdf",sep=""),width=6,height=4)
+    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
+	postscript(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height=4)
+    plot + annotate('text', x = diff_x, y = -2, label='*', size = 5) + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
 }
-
-pdf(paste(filename_prefix,"_boxplot.pdf",sep=""),width=6,height=4)
-png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
-plot + annotate('text', x = diff_x, y = -2, label='*', size = 5) + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
 dev.off()
