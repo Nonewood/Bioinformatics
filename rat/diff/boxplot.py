@@ -64,5 +64,5 @@ rscript = 'Rscript boxplot.R boxplot.txt ' + group + ' ' + color + ' ' + diff_re
 print(rscript)
 os.system(rscript)
 # 删除过程文件
-#os.remove('boxplot.txt')
-#os.remove('tax_mean_order.txt')
+os.remove('boxplot.txt')
+os.remove('tax_mean_order.txt')
