@@ -15,7 +15,7 @@ parser.add_argument('-a','--abd', help = "the abundance file, eg M_expose_genusP
 parser.add_argument('-g','--group', help = "the group name,eg EL:Cig.")
 parser.add_argument('-c','--color', help = "the color scheme,eg 487eb3:d2382c.")
 parser.add_argument('-d','--diff', help = "the filtered different test result file, eg filter_EL_Cig.E-liquid-Cigarette.wilcox.test.xls.")
-parser.add_argument('-n','--number', help = "the number of tax for boxplot,eg 20. default is 20.", nargs='?')
+parser.add_argument('-n','--number', help = "the number of tax for boxplot,eg 20. default is 20.", type=int, nargs='?')
 parser.add_argument('-f','--filter_type', help = "the filter type of different result,eg pvalue. default is qavlue", nargs='?')
 parser.add_argument('-o','--outdir', help = "the output directory")
 args=parser.parse_args()
@@ -64,5 +64,5 @@ rscript = 'Rscript boxplot.R boxplot.txt ' + group + ' ' + color + ' ' + diff_re
 print(rscript)
 os.system(rscript)
 # 删除过程文件
-os.remove('boxplot.txt')
-os.remove('tax_mean_order.txt')
+#os.remove('boxplot.txt')
+#os.remove('tax_mean_order.txt')
