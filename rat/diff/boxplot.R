@@ -66,7 +66,7 @@ for (i in 1:length(diffID)) {
     }
 }
 
-if (length(diffID_sig != 0) {
+if (length(diffID_sig != 0)) {
 	diff_sig_x  = c()
 	for (i in 1:length(diffID_sig)) {
    		if ( diffID_sig[i] %in% x_order) {
@@ -74,23 +74,34 @@ if (length(diffID_sig != 0) {
    		}
 	}
 } 
+# eps
 if (is.null(diff_x) & is.null(diff_sig_x)) {
     print("no tax is different! check your data!")
 } else if ( !is.null(diff_x) & is.null(diff_sig_x)) {
-    #pdf(paste(filename_prefix,"_boxplot.pdf",sep=""),width=6,height=4)
-    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
 	postscript(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height=4)
-    plot + annotate('text', x = diff_x, y = -2, label='*', size = 5)
-#	ggsave(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height = 4, units = "in")	
+    plot + annotate('text', x = diff_x, y = -2, label='*', size = 5)	
 } else if ( is.null(diff_x) & !is.null(diff_sig_x)) {
-#    pdf(paste(filename_prefix,"_boxplot.pdf",sep=""),width=6,height=4)
-    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
+    
 	postscript(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height=4)
     plot + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
 } else {
-#   pdf(paste(filename_prefix,"_boxplot.pdf",sep=""),width=6,height=4)
-    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
 	postscript(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height=4)
+    plot + annotate('text', x = diff_x, y = -2, label='*', size = 5) + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
+}
+dev.off()
+
+#png
+if (is.null(diff_x) & is.null(diff_sig_x)) {
+    print("no tax is different! check your data!")
+} else if ( !is.null(diff_x) & is.null(diff_sig_x)) {
+    #png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent") #集群
+    png(paste(filename_prefix,"_boxplot.png",sep=""), units="in",res=600, width=6, height=4, bg="transparent")
+    plot + annotate('text', x = diff_x, y = -2, label='*', size = 5)
+} else if ( is.null(diff_x) & !is.null(diff_sig_x)) {
+    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
+    plot + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
+} else {
+    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
     plot + annotate('text', x = diff_x, y = -2, label='*', size = 5) + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
 }
 dev.off()
