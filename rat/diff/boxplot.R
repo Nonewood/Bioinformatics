@@ -8,10 +8,11 @@ group_list = Args[2] # EL:Cig
 color_list = Args[3] # 487eb3:d2382c
 diff_result = Args[4] # EL_Cig.E-liquid-Cigarette.wilcox.test.xls
 diff_type = Args[5] # pvalue or qvalue
+prefix = Args[6]
 legend_list = c(unlist(strsplit(group_list, ":")))
 color_var = unlist(strsplit(color_list, ":"))
 color_var = c(paste("#",color_var,sep=""))
-filename_prefix = gsub(":", "_", group_list)
+filename_prefix = paste(prefix,gsub(":", "_", group_list),sep="_")
 
 data = read.table(box_table, header = T, sep = '\t')
 
@@ -25,7 +26,8 @@ el_summ = summarise(el_group, el_median = median(Abd))
 merge = merge(cig_summ, el_summ, by='ID')
 bigger = filter(merge, merge$cig_median > merge$el_median)
 less = filter(merge, merge$cig_median < merge$el_median)
-x_order = as.character(rbind(bigger[order(bigger$cig_median),]['ID'], less[order(less$cig_median),]['ID'])$ID)
+#x_order = as.character(rbind(bigger[order(bigger$cig_median),]['ID'], less[order(less$cig_median),]['ID'])$ID)
+x_order = c(as.character(rev(bigger[order(bigger$cig_median),]$ID)), as.character(rev(less[order(less$cig_median),]$ID)))
 data$x = factor(data$ID, levels=x_order)
 
 data$group<-factor(data$Group, legend_list)
@@ -56,41 +58,58 @@ df = read.table(diff_result, header=T, sep="\t", check.names = F)
 diffID_sig = filter(df, UQ(as.name(diff_type)) < 0.01)$ID
 diffID = filter(df, UQ(as.name(diff_type)) > 0.01 & UQ(as.name(diff_type)) < 0.05)$ID
 diff_x  = c()
-if ( length(diffID) == 0) {
+if ( length(diffID) == 0 & length(diffID_sig) == 0) {
 	print(paste("no tax is different for",diff_type,"!",sep=" "))
 	q()
 }
 for (i in 1:length(diffID)) {
-    if ( diffID[i] %in% x_order) {
-            diff_x = c(diff_x,(which(x_order == diffID[i])))        
+	item = gsub('_',' ', diffID[i]) # 因为 ID 不统一	
+    if ( item %in% x_order) {
+            diff_x = c(diff_x,(which(x_order == item)))
+			print(item) 
     }
 }
 
-if (length(diffID_sig != 0) {
-	diff_sig_x  = c()
+diff_sig_x  = c()
+if (length(diffID_sig != 0)) {
 	for (i in 1:length(diffID_sig)) {
-   		if ( diffID_sig[i] %in% x_order) {
-            diff_sig_x = c(diff_sig_x,(which(x_order == diffID_sig[i])))        
+		item = gsub('_',' ', diffID_sig[i])	
+   		if ( item %in% x_order) {
+            diff_sig_x = c(diff_sig_x,(which(x_order == item))) 
+			print(item) 
    		}
 	}
 } 
+# eps
 if (is.null(diff_x) & is.null(diff_sig_x)) {
     print("no tax is different! check your data!")
+	q()
 } else if ( !is.null(diff_x) & is.null(diff_sig_x)) {
-    #pdf(paste(filename_prefix,"_boxplot.pdf",sep=""),width=6,height=4)
-    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
 	postscript(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height=4)
-    plot + annotate('text', x = diff_x, y = -2, label='*', size = 5)
-#	ggsave(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height = 4, units = "in")	
+    plot + annotate('text', x = diff_x, y = -2, label='*', size = 5)	
 } else if ( is.null(diff_x) & !is.null(diff_sig_x)) {
-#    pdf(paste(filename_prefix,"_boxplot.pdf",sep=""),width=6,height=4)
-    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
+    
 	postscript(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height=4)
     plot + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
 } else {
-#   pdf(paste(filename_prefix,"_boxplot.pdf",sep=""),width=6,height=4)
-    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
 	postscript(paste(filename_prefix,"_boxplot.eps",sep=""), width = 6, height=4)
+    plot + annotate('text', x = diff_x, y = -2, label='*', size = 5) + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
+}
+dev.off()
+
+#png
+if (is.null(diff_x) & is.null(diff_sig_x)) {
+    print("no tax is different! check your data!")
+	q()
+} else if ( !is.null(diff_x) & is.null(diff_sig_x)) {
+    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent") #集群
+   # png(paste(filename_prefix,"_boxplot.png",sep=""), units="in",res=600, width=6, height=4, bg="transparent")
+    plot + annotate('text', x = diff_x, y = -2, label='*', size = 5)
+} else if ( is.null(diff_x) & !is.null(diff_sig_x)) {
+    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
+    plot + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
+} else {
+    png(paste(filename_prefix,"_boxplot.png",sep=""),type="cairo",units="in",res=600,width=6,height=4,bg="transparent")
     plot + annotate('text', x = diff_x, y = -2, label='*', size = 5) + annotate('text', x = diff_sig_x, y = -2, label='**', size = 5)
 }
 dev.off()
