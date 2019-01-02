@@ -55,7 +55,7 @@ theme(
 
 # 加差异显著的 * 或者 **, 目前只支持 0.05 和 0.01 
 df = read.table(diff_result, header=T, sep="\t", check.names = F)
-diffID_sig = filter(df, UQ(as.name(diff_type)) < 0.01)$ID
+diffID_sig = filter(df, UQ(as.name(diff_type)) < 0.01)$ID   # UQ .. 这个将字符串改变为内置变量
 diffID = filter(df, UQ(as.name(diff_type)) > 0.01 & UQ(as.name(diff_type)) < 0.05)$ID
 diff_x  = c()
 if ( length(diffID) == 0 & length(diffID_sig) == 0) {
