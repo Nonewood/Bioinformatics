@@ -1,3 +1,4 @@
+#Rscript FB_boxplot.R F_B_ratio_boxplot.txt（在主目录的 data 文件夹里） E-liquid:Cigarette 487eb3:d2382c
 library(ggplot2)
 library(ggpubr)
 Args = commandArgs(TRUE)
