@@ -1,5 +1,6 @@
 #! /usr/bin/python3
 # calculate the frequency of occurence of ciations in an article
+# 统计文章中引文出现的次数，需要提供引文和正文内容，引文格式为 [数字]，需要的文件在 Data 目录下；
 import re
 quotation = dict()
 with open('quotation.txt', 'r') as IN:
