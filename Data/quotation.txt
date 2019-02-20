@@ -1,0 +1,61 @@
+References
+1. So A, Thorens B. Uric acid transport and disease. J Clin Invest. 2010;120:1791–9. 
+2. Richette P, Bardin T. Gout. Lancet. 2010;375:318–28. 
+3. Saag KG, Choi H. Epidemiology, risk factors, and lifestyle modifications for gout. Arthritis Res Ther. 2006;8 Suppl 1:S2. 
+4. Zhu Y, Pandya BJ, Choi HK. Prevalence of gout and hyperuricemia in the US general population: The National Health and Nutrition Examination Survey 2007-2008. Arthritis Rheum. 2011;63:3136–41. 
+5. Kuo C-F, Grainge MJ, Mallen C, Zhang W, Doherty M. Rising burden of gout in the UK but continuing suboptimal management: a nationwide population study. Ann Rheum Dis. 2015;74:661–7. 
+6. Miao Z, Li C, Chen Y, Zhao S, Wang Y, Wang Z, et al. Dietary and lifestyle changes associated with high prevalence of hyperuricemia and gout in the Shandong coastal cities of Eastern China. J Rheumatol. 2008;35:1859–64. 
+7. Sorensen LB, Levinson DJ. Origin and Extrarenal Elimination of Uric Acid in Man. Nephron. 1975;14:7–20. 
+8. Liu R, Hong J, Xu X, Feng Q, Zhang D, Gu Y, et al. Gut microbiome and serum metabolome alterations in obesity and after weight-loss intervention. Nat Med. 2017;23:859–68. 
+9. Li J, Zhao F, Wang Y, Chen J, Tao J, Tian G, et al. Gut microbiota dysbiosis contributes to the development of hypertension. Microbiome. 2017;5:14. 
+10. Wen C, Zheng Z, Shao T, Liu L, Xie Z, Le Chatelier E, et al. Quantitative metagenomics reveals unique gut microbiome biomarkers in ankylosing spondylitis. Genome Biol. 2017;18:142. 
+11. Zhang X, Zhang D, Jia H, Feng Q, Wang D, Liang D, et al. The oral and gut microbiomes are perturbed in rheumatoid arthritis and partly normalized after treatment. Nat Med. 2015;21:895–905. 
+12. Guo Z, Zhang J, Wang Z, Ang KY, Huang S, Hou Q, et al. Intestinal Microbiota Distinguish Gout Patients from Healthy Humans. Sci Rep. 2016;6:20602. 
+13. Shao T, Shao L, Li H, Xie Z, He Z, Wen C. Combined Signature of the Fecal Microbiome and Metabolome in Patients with Gout. Front Microbiol. 2017;8:268. 
+14. Roubenoff R, Klag MJ, Mead LA, Liang KY, Seidler AJ, Hochberg MC. Incidence and Risk Factors for Gout in White Men. J Am Med Assoc. 1991;266:3004–7. 
+15. Abdullah E, Idris A, Saparon A. The immune response to Prevotella bacteria in chronic inflammatory disease. ARPN J Eng Appl Sci. 2017;12:3218–21. 
+16. Scher JU, Sczesnak A, Longman RS, Segata N, Ubeda C, Bielski C, et al. Expansion of intestinal Prevotella copri correlates with enhanced susceptibility to arthritis. Elife. 2013;2:e01202. 
+17. Kostic AD, Chun E, Robertson L, Glickman JN, Gallini CA, Michaud M, et al. Fusobacterium nucleatum Potentiates Intestinal Tumorigenesis and Modulates the Tumor-Immune Microenvironment. Cell Host Microbe. 2013;14:207–15. 
+18. Eckburg PB, Bik EM, Bernstein CN, Purdom E, Dethlefsen L, Sargent M, et al. Diversity of the human intestinal microbial flora. Science (80- ). 2005;308:1635–8. 
+19. Tamanai-Shacoori Z, Smida I, Bousarghin L, Loreal O, Meuric V, Fong SB, et al. Roseburia spp.: A marker of health? Future Microbiol. 2017;12:157–70. 
+20. Vogels GD, Van der Drift C. Degradation of purines and pyrimidines by microorganisms. Bacteriol Rev. 1976;40:403–68. 
+21. Dessein PH, Shipton EA, Stanwix AE, Joffe BI, Ramokgadi J. Beneficial effects of weight loss associated with moderate calorie/carbohydrate restriction, and increased proportional intake of protein and unsaturated fat on serum urate and lipoprotein levels in gout: A pilot study. Ann Rheum Dis. 2000;59:539–43. 
+22. Jamnik J, Rehman S, Blanco Mejia S, de Souza RJ, Khan TA, Leiter LA, et al. Fructose intake and risk of gout and hyperuricemia: a systematic review and meta-analysis of prospective cohort studies. BMJ Open. 2016;6:e013191. 
+23. Narins RG, Weisberg JS, Myers AR. Effects of carbohydrates on uric acid metabolism. Metabolism. 1974;23:455–65. 
+24. Marchesi JR, Adams DH, Fava F, Hermes GDA, Hirschfield GM, Hold G, et al. The gut microbiota and host health: A new clinical frontier. Gut. 2016;65:330–9. 
+25. Qin J, Li Y, Cai Z, Li S, Zhu J, Zhang F, et al. A metagenome-wide association study of gut microbiota in type 2 diabetes. Nature. 2012;490:55–60. 
+26. Jie Z, Xia H, Zhong S-L, Feng Q, Li S, Liang S, et al. The gut microbiome in atherosclerotic cardiovascular disease. Nat Commun. 2017;8:845. 
+27. Maier L, Pruteanu M, Kuhn M, Zeller G, Telzerow A, Anderson EE, et al. Extensive impact of non-antibiotic drugs on human gut bacteria. Nature. 2018;555:623–8. 
+28. Rouf MA, Lomprey RF, Jr. Degradation of uric acid by certain aerobic bacteria. J Bacteriol. 1968;96:617–22. 
+29. Choi HK, Curhan G. Soft drinks, fructose consumption, and the risk of gout in men: prospective cohort study. BMJ. 2008;336:309–12. 
+30. Choi HK, Willett W, Curhan G. Fructose-Rich Beverages and Risk of Gout in Women. JAMA. 2010;304:2270. 
+31. Emmerson BT. Effect of oral fructose on urate production. Ann Rheum Dis. 1974;33:276–80. 
+32. Man SM. Inflammasomes in the gastrointestinal tract: infection, cancer and gut microbiota homeostasis. Nat Rev Gastroenterol Hepatol. 2018;15:721–37. 
+33. Kingsbury SR, Conaghan PG, McDermott MF. The role of the NLRP3 inflammasome in gout. J Inflamm Res. 2011;4:39–49. 
+34. Vatanen T, Kostic AD, D’Hennezel E, Siljander H, Franzosa EA, Yassour M, et al. Variation in Microbiome LPS Immunogenicity Contributes to Autoimmunity in Humans. Cell. 2016;165:842–53. 
+35. d’Hennezel E, Abubucker S, Murphy LO, Cullen TW. Total Lipopolysaccharide from the Human Gut Microbiome Silences Toll-Like Receptor Signaling. mSystems. 2017;2:e00046–17. 
+36. Kohashi O, Kohashi Y, Takahashi T, Ozawa A, Shigematsu N. Suppressive effect of Escherichia coli on adjuvant-induced arthritis in germ-free rats. Arthritis Rheum. 1986;29:547–53. 
+37. Kohashi O, Kohashi Y, Takahashi T, Ozawa A, Shigematsu N. Reverse effect of gram-positive bacteria vs. gram-negative bacteria on adjuvant-induced arthritis in germfree rats. Microbiol Immunol. 1985;29:487–97. 
+38. Machiels K, Joossens M, Sabino J, De Preter V, Arijs I, Eeckhaut V, et al. A decrease of the butyrate-producing species Roseburia hominis and Faecalibacterium prausnitzii defines dysbiosis in patients with ulcerative colitis. Gut. 2014;63:1275–83. 
+39. Thorburn AN, McKenzie CI, Shen S, Stanley D, Macia L, Mason LJ, et al. Evidence that asthma is a developmental origin disease influenced by maternal diet and bacterial metabolites. Nat Commun. 2015;6:7320. 
+40. Trompette A, Gollwitzer ES, Yadava K, Sichelstiel AK, Sprenger N, Ngom-Bru C, et al. Gut microbiota metabolism of dietary fiber influences allergic airway disease and hematopoiesis. Nat Med. 2014;20:159–66. 
+41. Cleophas MCP, Crişan TO, Lemmers H, Toenhake-Dijkstra H, Fossati G, Jansen TL, et al. Suppression of monosodium urate crystal-induced cytokine production by butyrate is mediated by the inhibition of class I histone deacetylases. Ann Rheum Dis. 2016;75:593–600. 
+42. Vieira AT, Galvão I, Macia LM, Sernaglia ÉM, Vinolo MAR, Garcia CC, et al. Dietary fiber and the short-chain fatty acid acetate promote resolution of neutrophilic inflammation in a model of gout in mice. J Leukoc Biol. 2017;101:275–84. 
+43. Rivière A, Selak M, Lantin D, Leroy F, De Vuyst L. Bifidobacteria and Butyrate-Producing Colon Bacteria: Importance and Strategies for Their Stimulation in the Human Gut. Front Microbiol. 2016;7:979. 
+44. Van Den Abbeele P, Belzer C, Goossens M, Kleerebezem M, De Vos WM, Thas O, et al. Butyrate-producing Clostridium cluster XIVa species specifically colonize mucins in an in vitro gut model. ISME J. 2013;7:949–61. 
+45. Louis P, Flint HJ. Diversity, metabolism and microbial ecology of butyrate-producing bacteria from the human large intestine. FEMS Microbiol Lett. 2009;294:1–8. 
+46. Yu J, Feng Q, Wong SH, Zhang D, Yi Liang Q, Qin Y, et al. Metagenomic analysis of faecal microbiome as a tool towards targeted non-invasive biomarkers for colorectal cancer. Gut. 2017;66:70–8. 
+47. Loomba R, Seguritan V, Li W, Long T, Klitgord N, Bhatt A, et al. Gut Microbiome-Based Metagenomic Signature for Non-invasive Detection of Advanced Fibrosis in Human Nonalcoholic Fatty Liver Disease. Cell Metab. 2017;25:1054–1062.e5. 
+48. He Y, Wu W, Zheng HM, Li P, McDonald D, Sheng HF, et al. Regional variation limits applications of healthy gut microbiome reference ranges and disease models. Nat Med. 2018;1532–5. 
+49. Neogi T. Gout. N Engl J Med. 2011;364:443–52. 
+50. Neogi T, Jansen TLTA, Dalbeth N, Fransen J, Schumacher HR, Berendsen D, et al. 2015 Gout classification criteria: An American College of Rheumatology/European League Against Rheumatism collaborative initiative. Ann Rheum Dis. 2015;74:1789–98. 
+51. Goodrich JK, Davenport ER, Beaumont M, Jackson MA, Knight R, Ober C, et al. Genetic Determinants of the Gut Microbiome in UK Twins. Cell Host Microbe. 2016;19:731–43. 
+52. Li J, Wang J, Jia H, Cai X, Zhong H, Feng Q, et al. An integrated catalog of reference genes in the human gut microbiome. Nat Biotechnol. 2014;32:834–41. 
+53. Chao A. Estimating the Population Size for Capture-Recapture Data with Unequal Catchability. Biometrics. 1987;43:783. 
+54. Le Chatelier E, Nielsen T, Qin J, Prifti E, Hildebrand F, Falony G, et al. Richness of human gut microbiome correlates with metabolic markers. Nature. 2013;500:541–6. 
+55. Patil KR, Nielsen J. Uncovering transcriptional regulation of metabolism by using metabolic network topology. Proc Natl Acad Sci U S A. 2005;102:2685–9. 
+56. Letunic I, Bork P. Interactive tree of life (iTOL) v3: an online tool for the display and annotation of phylogenetic and other trees. Nucleic Acids Res. 2016;44:W242–5. 
+57. Claesson MJ, Jeffery IB, Conde S, Power SE, O’Connor EM, Cusack S, et al. Gut microbiota composition correlates with diet and health in the elderly. Nature. 2012;488:178–84. 
+58. Nielsen HB, Almeida M, Juncker AS, Rasmussen S, Li J, Sunagawa S, et al. Identification and assembly of genomes and genetic elements in complex metagenomic samples without using reference genomes. Nat Biotechnol. 2014;32:822–8. 
+59. Feng Q, Liang S, Jia H, Stadlmayr A, Tang L, Lan Z, et al. Gut microbiome development along the colorectal adenoma-carcinoma sequence. Nat Commun. 2015;6:6528. 
+60. Robin X, Turck N, Hainard A, Tiberti N, Lisacek F, Sanchez J-C, et al. pROC: an open-source package for R and S+ to analyze and compare ROC curves. BMC Bioinformatics. 2011;12:77. 
