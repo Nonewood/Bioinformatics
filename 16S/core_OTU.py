@@ -33,6 +33,8 @@ if not all(par):
 
 threshold  = args.threshold if args.threshold else 0.8
 outdir = args.outdir if args.outdir else './'
+if not os.path.exists(outdir):
+	os.mkdirs(outdir)
 
 # 基于重复样品对 OTU 丰度表进行合并处理
 def merge_otu(group_file, otu_file, outdir):
@@ -42,7 +44,6 @@ def merge_otu(group_file, otu_file, outdir):
         for line in IN:
             lst = line.strip('\n').split('\t')
             sample[lst[0]] = lst[8]
-
     with open(otu_file, 'r') as IN, open(outdir + '/merge_OTU_profile.txt', 'w') as out:
         header = IN.readline().strip('\n').split('\t')
         new_header = [sample[x] for x in header if x in sample]
