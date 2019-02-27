@@ -11,7 +11,7 @@ parser = argparse.ArgumentParser(
 -------------------
 Simple Introduction:
 Generate the core OTU results.
-Example: python3 core_OTU.py -i phylumProfileTable.xls -o Process -r 0.01
+Example: python3 core_OTU.py -i filter_OTU_shared_final.xls -g plant.bms.txt.all.new.name -s SubGroup3 -p SubGroup1 -o outdir
 To be continued.
 ------------------'''
 )
