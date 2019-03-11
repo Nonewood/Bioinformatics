@@ -24,9 +24,9 @@ parser.add_argument('-t','--threshold', help = "threshold for core OTU, default 
 parser.add_argument('-o','--outdir', help = "the output directory", nargs = "?")
 args=parser.parse_args()
 
-(abd_file, group, sample_ID, group_par) = (args.Input, args.group, args.sample ,args.groupname)
+(abd_file, group_file, sample_ID, group_par) = (args.Input, args.group, args.sample ,args.groupname)
 
-par = [abd_file, group, sample_ID, group_par]
+par = [abd_file, group_file, sample_ID, group_par]
 if not all(par):
         parser.print_help()
         exit()
@@ -53,14 +53,14 @@ def merge_otu(group_file, otu_file, outdir):
             lst = line.strip('\n').split('\t')
             outID = lst[0]
             zeroINsample = list()
-            counts = defaultdict(int) # value will initialize to 0
-            sum = defaultdict(int)
+            counts = defaultdict(float) # value will initialize to 0
+            sum = defaultdict(float)
             mean_OTU = dict()
             for x in range(1,len(lst)):
-                if lst[x] == '0':
+                if lst[x] == float(0)':
                     zeroINsample.append(new_header[x])
                 counts[new_header[x]] += 1
-                sum[new_header[x]] += int(lst[x])
+                sum[new_header[x]] += float(lst[x])
             for key in sorted(counts.keys()):
                 if key not in zeroINsample:
                     mean = sum[key]/counts[key]
