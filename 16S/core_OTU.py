@@ -157,8 +157,8 @@ def core_otu(compare_group, group_par, sample_ID, common_OTU, outdir):
     print("Generate the final results: " + outfile)
 
 # process the otu table
-otu_file = 'filter_OTU_shared_final.xls'
-group_file = 'plant.bms.txt.all.new.name'
+otu_file = abd_file
+group_file = group
 merge_otu(group_file, otu_file, outdir)
 
 # common OTU
