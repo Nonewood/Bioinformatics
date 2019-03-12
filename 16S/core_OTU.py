@@ -1,10 +1,12 @@
 #! /usr/bin/python3
+
 import pandas as pd
 import rpy2.robjects as robjects
 import numpy as np
 from itertools import combinations
 from collections import defaultdict
 import argparse,os,math
+
 parser = argparse.ArgumentParser(
     formatter_class=argparse.RawDescriptionHelpFormatter,
     description='''
@@ -24,9 +26,9 @@ parser.add_argument('-t','--threshold', help = "threshold for core OTU, default 
 parser.add_argument('-o','--outdir', help = "the output directory", nargs = "?")
 args=parser.parse_args()
 
-(abd_file, group_file, sample_ID, group_par) = (args.Input, args.group, args.sample ,args.groupname)
+(otu_file, group_file, sample_ID, group_par) = (args.Input, args.group, args.sample ,args.groupname)
 
-par = [abd_file, group_file, sample_ID, group_par]
+par = [otu_file, group_file, sample_ID, group_par]
 if not all(par):
         parser.print_help()
         exit()
@@ -34,20 +36,22 @@ if not all(par):
 threshold  = args.threshold if args.threshold else 0.8
 outdir = args.outdir if args.outdir else './'
 if not os.path.exists(outdir):
-	os.mkdirs(outdir)
+    os.mkdir(outdir)
 
-# 基于重复样品对 OTU 丰度表进行合并处理
-def merge_otu(group_file, otu_file, outdir):
+# merge OTU table for samples with repeat
+def merge_otu(group_file, otu_file, sample_ID, outdir):
     sample = dict()
-    sample[''] = '' # 为了输出第一行第一列的空格
     with open(group_file, 'r') as IN:
+        group_header = IN.readline().strip('\n').split('\t')
+        sampleID_index =  group_header.index(sample_ID)
         for line in IN:
             lst = line.strip('\n').split('\t')
-            sample[lst[0]] = lst[8]
+            sample[lst[0]] = lst[sampleID_index]
     with open(otu_file, 'r') as IN, open(outdir + '/merge_OTU_profile.txt', 'w') as out:
-        header = IN.readline().strip('\n').split('\t')
-        new_header = [sample[x] for x in header if x in sample]
-        out_header = '\t'.join([str(x) for x in sorted(list(set(new_header)))])
+        otu_header = IN.readline().strip('\n').split('\t')
+        sample[otu_header[0]] = otu_header[0]
+        new_header = [sample[x] for x in otu_header if x in sample]
+        out_header = '\t'.join([str(x) for x in sorted(list(set(new_header)))])  ## 排序很重要...
         print(out_header, file=out)
         for line in IN:
             lst = line.strip('\n').split('\t')
@@ -57,11 +61,16 @@ def merge_otu(group_file, otu_file, outdir):
             sum = defaultdict(float)
             mean_OTU = dict()
             for x in range(1,len(lst)):
-                if lst[x] == float(0)':
+                if lst[x] == '0':
                     zeroINsample.append(new_header[x])
                 counts[new_header[x]] += 1
                 sum[new_header[x]] += float(lst[x])
-            for key in sorted(counts.keys()):
+            equal = out_header.split('\t')
+            equal.remove('')
+            if equal != sorted(counts.keys()):
+                print('Something wrong! Please contact the me~')
+                exit()
+            for key in sorted(counts.keys()): # 这里也要排序, 从而保持一致
                 if key not in zeroINsample:
                     mean = sum[key]/counts[key]
                     mean_OTU[key] = mean
@@ -74,19 +83,19 @@ def merge_otu(group_file, otu_file, outdir):
             print(out_line, file=out)
     print("Generate merged OTU table: " + "merge_OTU_profile.txt")
 
-# 得到 common OTU 的丰度表，其标准是计算每个分组内在 80% （暂定）样品以上存在的 OTU, 然后将各个分组的 OTU 取并集得到新的 OTU 丰度表
+# common otu table
 def common_OTU(group_par, sample_ID, threshold, outdir):
     common_OTU_list = list()
     all_groups = group[group_par].unique()
-    for item in all_groups:  # 这里是计算三个地点的 common OTU
-        lst = group.loc[group[group_par] == item,:][sample_ID].unique() # 计算每个分组的样品
-        sub_dt = dt[lst] # 提取每个组的样品
-        sample_num = sub_dt.shape[1] #每个组的样品个数
-        threshold = sample_num*threshold  # 80% 的阈值
-        temp_OTU = sub_dt[(sub_dt != 0).sum(axis = 1) > threshold] #对于每个 OTU, 存在的样品数目大于 80% 的留下来
-        common_OTU_list = list(temp_OTU.index) + common_OTU_list  # 累计每个分组的 OTU ，但是会存在重复
-    final_OTU = list(set(common_OTU_list)) # 去重
-    common_OTU_dt = dt.loc[final_OTU,:]   # 得到 common OTU 表
+    for item in all_groups:
+        lst = group.loc[group[group_par] == item,:][sample_ID].unique()
+        sub_dt = dt[lst]
+        sample_num = sub_dt.shape[1]
+        threshold = sample_num*threshold
+        temp_OTU = sub_dt[(sub_dt != 0).sum(axis = 1) > threshold]
+        common_OTU_list = list(temp_OTU.index) + common_OTU_list
+    final_OTU = list(set(common_OTU_list))
+    common_OTU_dt = dt.loc[final_OTU,:]
     outfile = '_'.join(all_groups) + '_commonOTU.xls'
     common_OTU_dt.to_csv(outdir + '/' + outfile, sep ='\t')
     print("Generating the common OTU file: " + outfile)
@@ -123,7 +132,7 @@ def core_otu(compare_group, group_par, sample_ID, common_OTU, outdir):
         rank = robjects.r['rank']
         two_lst = list(common_OTU_dt.loc[otu][list(former_lst) + list(latter_lst)])
         Rank = list(np.array(rank(robjects.FloatVector(two_lst))))
-        former_rank = Rank[:len(list(former_lst))] # 依据是 list 的合并是按照顺序来的..
+        former_rank = Rank[:len(list(former_lst))]
         latter_rank = Rank[len(list(former_lst)):]
         former_rank_mean = np.mean(former_rank)
         latter_rank_mean = np.mean(latter_rank)
@@ -157,7 +166,7 @@ def core_otu(compare_group, group_par, sample_ID, common_OTU, outdir):
     print("Generate the final results: " + outfile)
 
 # process the otu table
-merge_otu(group_file, abd_file, outdir)
+merge_otu(group_file, otu_file, sample_ID, outdir)
 
 # common OTU
 dt = pd.read_table(outdir + '/merge_OTU_profile.txt', header = 0, index_col = 0, sep = '\t')
