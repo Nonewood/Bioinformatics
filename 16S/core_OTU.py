@@ -94,7 +94,11 @@ def common_OTU(group_par, sample_ID, threshold, outdir):
 		sub_dt = dt[lst]
 		sample_num = sub_dt.shape[1]
 		threshold = sample_num*threshold
-		temp_OTU = sub_dt[(sub_dt != 0).sum(axis = 1) > threshold]
+		threshold_num = sample_num*threshold
+		temp_OTU = sub_dt[(sub_dt != 0).sum(axis = 1) > threshold_num]
+		temp_OTU_dt = sub_dt.loc[temp_OTU.index,:]
+		temp_OTU_dt.to_csv(outdir + '/' + item + '_commonOTU.xls', sep ='\t')
+		print("Generating the common OTU file: " + item + "_commonOTU.xls")
 		common_OTU_list = list(temp_OTU.index) + common_OTU_list
 	final_OTU = list(set(common_OTU_list))
 	common_OTU_dt = dt.loc[final_OTU,:]
