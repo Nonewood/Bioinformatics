@@ -40,6 +40,13 @@ for index in range(0, number):
     for results_number in range(1,11):
         raw_line = table.find(ind = results_number).get_text()
         raw_line = re.sub('\n+','\n', raw_line)
-        line = '\t'.join(raw_line.strip('\n').split('\n')[1:])
+        # E value 和 identity 列错位
+        temp = raw_line.strip('\n').split('\n')
+        mismatch = temp[5]
+        del temp[5]
+        del temp[0]
+        temp.insert(5,mismatch[:-6])
+        temp.insert(6,mismatch[-6:])
+        line = '\t'.join(temp)
         print(line, file = out)
 out.close() ## 一定要关闭... 不然输出文件会不全....
