@@ -86,8 +86,8 @@ sample_order = list(dt.loc[dt['level'] == tax_order[0]].groupby('individual').ab
 
 #generate barplot Rscript
 color_list = list()
-with open('/ifswh1/BC_PS/wangpeng7/script/color.txt', 'r') as color:
-	color_list = color.read().split('\n')
+with open('color.txt', 'r') as color:
+	color_list = color.read().split('\n')  # 一次性读取文件
 
 color_list.pop(-1)
 color_list = color_list[:len(tax_order)]
@@ -110,4 +110,4 @@ with open(plot_script, 'w') as rscript:
 
 # plot 
 import os
-os.system('/ifswh1/BC_PUB/biosoft/BC_NQ/01.Soft/03.Soft_ALL/R-3.4.1/bin/Rscript ' + plot_script)
+os.system('Rscript ' + plot_script)
