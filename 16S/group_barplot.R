@@ -1,7 +1,6 @@
 #!/usr/bin/Rscript
 ############################################################
-# Core OTUs (The common OTUs enriched in rhizoplane
-# samples (P<0.05) were then defined as ‘core OTUs’.)
+# 画 barplot 的时候加上分组信息；加了 R 的外参；
 # usage: Rscript temp.R -i barplot.txt -t Otu9:Otu21:Otu25:Otu20:Otu30:Otu387:Otu34:Otu96:Otu111:Otu45:Otu420:Otu250:Otu63:Otu91:Otu148:Otu391:Otu367 -r r:y:rj:yj:zzd:zzs -c 3e523b:cca18d:8accc0:6f94bc:432c4f:763c32:ca94c7:69843d:77d28c:bf4579:6555ae:c98a39:d0d155:d34c3d:cb4cc3:75d549:7040cb -p prefix
 # 如示例所示：需要配置排序后的 OTU 和 色值，提供色值的网站可以在这里找: http://tools.medialab.sciences-po.fr/iwanthue/，程序稍微处理下就可以用了
 ############################################################
