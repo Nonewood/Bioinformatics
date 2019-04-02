@@ -5,7 +5,7 @@ library(png)
 #这个输入文件需要提前处理好，根据丰度文件
 dt = read.table("CJ_zscore_phylum.txt", header=TRUE, sep="\t", comment.char = "", check.names = F, row.names=1)
 
-#读取注释文件，这个文件也是，用来表示显著性差异的
+#读取注释文件，这个文件也是需要提前处理好，用来表示显著性差异的
 temp = read.table('CJ_phylum_annotation_col.txt', sep = "\t", header = TRUE, row.names = 1, comment.char = "", check.names = F)
 
 #首先画热图，需要得到聚类的顺序
@@ -16,7 +16,6 @@ temp_anno = temp[colnames(dt)[column_order(p)],]
 p_png = "Data/218-star-full.png"
 lessp_png = "Data/leessp.png"
 no_sig_png = "Data/no_sig.png"
-
 
 #将注释文件的字符串转变为变量
 Control_vs_CHD = as.character(lapply(as.character(temp_anno$`Control vs CHD`), function(x) eval(parse(text = x))))
@@ -37,6 +36,6 @@ ha = HeatmapAnnotation(
 
 pdf("phylum_heatmap.pdf", height = 8, width =8)
 Heatmap(dt, color = c("navy", "white", "firebrick3"), rect_gp = gpar(col = "grey50", lwd = 1), name = "", heatmap_legend_param = list(border = "grey50"), cluster_rows = F, cluster_columns = T,show_row_names = T, bottom_annotation = ha, width = unit(2*ncol(dt), "cm"), height = unit(2*nrow(dt), "cm"), row_names_gp = gpar(fontsize = 20), column_names_gp = gpar(fontsize = 20))
-##这个也是，有时候需要调节 cell ，字体的大小什么，不同水平的都要针对性的调整
+##这个也是，有时候需要调节 cell ，字体大小什么的，不同水平的都要针对性的调整
 #Heatmap(dt, color = c("navy", "white", "firebrick3"), rect_gp = gpar(col = "grey50", lwd = 1), name = "", heatmap_legend_param = list(border = "grey50"), cluster_rows = F, cluster_columns = T,show_row_names = T, bottom_annotation = ha, width = unit(4*ncol(dt), "mm"), height = unit(4*nrow(dt), "mm"), row_names_gp = gpar(fontsize = 10), column_names_gp = gpar(fontsize = 10), heatmap_height = 10, heatmap_width = 10)
 dev.off()          
