@@ -24,9 +24,9 @@ CHD_vs_STEMI = as.character(lapply(as.character(temp_anno$`CHD vs STEMI`), funct
 
 #生成热图的注释
 ha = HeatmapAnnotation(
-     "Control vs CHD" = anno_image(Control_vs_CHD, border = F),
-     "Control vs STEMI" = anno_image(Control_vs_STEMI,border = F),
-     "CHD vs STEMI" = anno_image(CHD_vs_STEMI,border = F),
+     "Control vs CHD" = anno_image(Control_vs_CHD, border = F, height = unit(7,"mm"), space = unit(7, "mm")),
+     "Control vs STEMI" = anno_image(Control_vs_STEMI,border = F, height = unit(7,"mm"), space = unit(7, "mm")),
+     "CHD vs STEMI" = anno_image(CHD_vs_STEMI,border = F, height = unit(7,"mm"), space = unit(7, "mm")),
       annotation_name_gp = gpar(fontsize = 20) # 调节大小
     ## 上边是门水平的脚本，如果画属或者种的话，需要调节图片的参数
     #"NCA vs sCAD" = anno_image(NCA_vs_sCAD, border = F, height = unit(4,"mm"), space = unit(4, "mm")),  #需要通过调节参数控制图片大小
