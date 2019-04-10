@@ -7,7 +7,7 @@ groups = list(group['Description'].unique())
 dt_list = list()
 for item in groups:
     dt = abd[[x for x in abd.columns if sample_group['Description'][x] == item]].mean(axis=1).to_frame(name='Mean')
-    large = dt.loc[dt['Mean'] > 0.01]
+    large = dt.loc[dt['Mean'] > 0.01] # 这里是合并低丰度物种，阈值要根据实际情况调整...
     small = dt.loc[dt['Mean'] <= 0.01]
     small_merge = small.sum().to_frame(name = 'Others').T
     dt_merge = pd.concat([large,small_merge])
