@@ -8,7 +8,7 @@ parser.add_argument('-l','--level', help = "the level of species,separated by a 
 args=parser.parse_args()
 (Input,Output,level) = (args.Input,args.Output,args.level)
 if not Input or not Output or not level:
-    print("Plase add the parameters,thank you :)\n\nExample: python3 genus_abundance.py -i /ifshk5/BC_COM_P11/F17HTSCCWLJ1810/RATdkdM/MetaPhlAn2/process/Taxonomy_MetaPhlAn2/MetaPhlAn2_Analysis/MetaPhlAn2_Merge_abundance_table.xls -l phylum,genus,species -o /ifshk5/BC_COM_P11/F17HTSCCWLJ1810/RATdkdM/MetaPhlAn2/process/Taxonomy_MetaPhlAn2/MetaPhlAn2_Analysis\n")
+    print("Plase add the parameters,thank you :)\n\nExample: python3 genus_abundance.py -i MetaPhlAn2_Analysis/MetaPhlAn2_Merge_abundance_table.xls -l phylum,genus,species -o Taxonomy_MetaPhlAn2/MetaPhlAn2_Analysis\n")
     exit()
 
 level_list = list()
