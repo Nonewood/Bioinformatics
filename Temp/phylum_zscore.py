@@ -4,7 +4,7 @@ dt = pd.read_table('/Users/tongxueer/Documents/20190214-北京/fuwai/CJ_phylum_a
 dt = dt.drop(['Tax_detail'], axis=1)
 group = pd.read_table('/Users/tongxueer/Documents/20190214-北京/fuwai/CJ_phylum_map.txt', index_col=0)
 from scipy.stats import zscore
-dt_z = dt.apply(zscore, axis=1).T  ## 这行是用来计算 zscore
+dt_z = dt.apply(zscore, ddof=1, axis=1).T  ## 这行是用来计算 zscore
 Control_mean = dt_z.loc[group.loc[group['Description'] == 'Control'].index].mean().to_frame(name='Control')
 CHD_mean = dt_z.loc[group.loc[group['Description'] == 'CHD'].index].mean().to_frame(name='CHD')
 STEMI_mean = dt_z.loc[group.loc[group['Description'] == 'STEMI'].index].mean().to_frame(name='STEMI')
