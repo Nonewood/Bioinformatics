@@ -27,6 +27,6 @@ for key in distance:
     if group_dict[key_split[0]] ==  group_dict[key_split[1]]:  #判断是否同组,
         print('\t'.join([key, str(distance[key]), group_dict[key_split[0]]]), file=out)
     else:
-        print('\t'.join([key, str(distance[key]), 'Inter_group']), file=out)  #否的话，输出组间样品距离的值
+        print('\t'.join([key, str(distance[key]), 'sCAD-AMI']), file=out)  #否的话，输出组间样品距离的值
 #print(n) #测试用
 out.close()
