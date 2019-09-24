@@ -1,4 +1,4 @@
-##属水平 beta 多样性处理, 只比较三组组内的距离
+## beta 多样性矩阵文件处理, 输出用于画箱线图的组内和组间的距离文件
 import pandas as pd
 dt = pd.read_table('braycurtis.txt', index_col = 0)  #距离矩阵文件
 group = pd.read_table('info.xls', index_col=0) #表型文件
