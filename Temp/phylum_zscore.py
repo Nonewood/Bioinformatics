@@ -1,8 +1,8 @@
 # 计算蔡军 门 水平的 Zscore
 ## 计算 z core
-dt = pd.read_table('/Users/tongxueer/Documents/20190214-北京/fuwai/CJ_phylum_abd.txt', index_col=0)
+dt = pd.read_table('CJ_phylum_abd.txt', index_col=0)
 dt = dt.drop(['Tax_detail'], axis=1)
-group = pd.read_table('/Users/tongxueer/Documents/20190214-北京/fuwai/CJ_phylum_map.txt', index_col=0)
+group = pd.read_table('CJ_phylum_map.txt', index_col=0)
 from scipy.stats import zscore
 dt_z = dt.apply(zscore, ddof=1, axis=1).T  ## 这行是用来计算 zscore
 Control_mean = dt_z.loc[group.loc[group['Description'] == 'Control'].index].mean().to_frame(name='Control')
@@ -11,9 +11,9 @@ STEMI_mean = dt_z.loc[group.loc[group['Description'] == 'STEMI'].index].mean().t
 z_merge = pd.concat([Control_mean,CHD_mean,STEMI_mean], axis=1)
 
 # 提取差异物种 ID
-Control_CHD = pd.read_table('/Users/tongxueer/Documents/20190214-北京/fuwai/Phylum.Control-CHD.wilcox.test.xls', index_col=0)
-STEMI_Control = pd.read_table('/Users/tongxueer/Documents/20190214-北京/fuwai/Phylum.STEMI-Control.wilcox.test.xls', index_col=0)
-STEMI_CHD = pd.read_table('/Users/tongxueer/Documents/20190214-北京/fuwai/Phylum.STEMI-CHD.wilcox.test.xls', index_col=0)
+Control_CHD = pd.read_table('Phylum.Control-CHD.wilcox.test.xls', index_col=0)
+STEMI_Control = pd.read_table('Phylum.STEMI-Control.wilcox.test.xls', index_col=0)
+STEMI_CHD = pd.read_table('Phylum.STEMI-CHD.wilcox.test.xls', index_col=0)
 
 Control_CHD_diff = list(Control_CHD.loc[Control_CHD['qvalue'] < 0.05].index)
 STEMI_Control_diff = list(STEMI_Control.loc[STEMI_Control['qvalue'] < 0.05].index)
