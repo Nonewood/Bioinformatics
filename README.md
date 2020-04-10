@@ -140,3 +140,9 @@ upset.R 花了点儿时间摸索了个软件，可以代替 venn 图查看多个
 2020年3月15日 下午9:19  
 增加了倾向性评分脚本 propensity_score.R 待完善; 相应的博客文章见这里[倾向性评分 | Propensity score](https://nonewood.github.io/2020/03/15/propensity-score/)  
 是一个充实的周末没错了... 略累... 待会儿去画画；  
+
+***  
+2020年4月10日  
+因为项目需要，增加脚本 multi_roc.R ，用于表型信息的 ROC 分类，比较简单，待优化； 
+
+
