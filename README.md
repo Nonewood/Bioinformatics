@@ -143,6 +143,6 @@ upset.R 花了点儿时间摸索了个软件，可以代替 venn 图查看多个
 
 ***  
 2020年4月10日  
-因为项目需要，增加脚本 multi_roc.R ，用于表型信息的 ROC 分类，比较简单，待优化； 
+因为项目需要，增加脚本 multi_roc.R ，用于表型信息的 ROC 分类，比较简单，待优化，博客文章见这里[表型信息的ROC曲线|multi_roc.R](https://nonewood.github.io/2020/04/10/phenotype-roc/)； 
 
 
