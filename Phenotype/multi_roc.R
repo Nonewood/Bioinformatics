@@ -1,8 +1,8 @@
-使用 pROC 画表型数据的多条 ROC
+#使用 pROC 画表型数据的多条 ROC
 library(pROC) # install with install.packages("pROC")
 library(randomForest) 
 library(dplyr)
-dt = read.table('Phenotype.xls', sep = '\t', head = T, row.names = 1) # 表型文件；
+dt = read.table('Phenotype.xls', sep = '\t', head = T, row.names = 1) # 表型文件，格式：列名为样品名，组别以及表型信息；
 
 temp = rownames(dt)
 dt = dt %>% mutate(Disease = ifelse(Group == 'NCA', 0, 1)) # 增加一列，将组别信息转化为 0，1
