@@ -19,7 +19,7 @@ writeLines(head, fileConn)
 for (index in indice_index:ncol(dt)){
     indice = colnames(dt)[index]
 	sub_dt = dt[c('Group',indice)] # 提取
-
+	 sub_dt = sub_dt[!(is.na(sub_dt[indice])),] 剔除表型的 Na 值，否则会对差异检验造成影响；
 	freq = sub_dt %>%
     group_by(Group, eval(parse(text = indice))) %>%  # 将变量转化为内置变量（大概这么叫吧）
     summarise(n = n()) %>%                           # 天呐这个功能太好用了...
