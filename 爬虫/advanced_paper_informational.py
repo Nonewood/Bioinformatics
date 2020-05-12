@@ -39,7 +39,13 @@ for x in title_list:
     browser.find_element_by_xpath('//*[@class="search-btn"]').click()
     time.sleep(5)
     soup = BeautifulSoup(browser.page_source, "html.parser")
-    journal = soup.find(id = "full-view-journal-trigger").get_text().strip()
+    
+    if soup.find(class_ = "matching-citations search-results-list"):   #有时候不能直接反馈检索的结果...
+        browser.find_element_by_xpath('//*[@class="labs-docsum-title"]').click()
+        soup = BeautifulSoup(browser.page_source, "html.parser")   
+        journal = soup.find(id = "full-view-journal-trigger").get_text().strip()
+    else:
+        journal = soup.find(id = "full-view-journal-trigger").get_text().strip()
 
     # IF
     for x in IF_dict:
@@ -49,7 +55,10 @@ for x in title_list:
 
 
     # 发表时间
-    p_time = soup.find(class_ = "secondary-date").get_text().strip().strip('Epub ').strip('.')
+    if soup.find(class_ = "secondary-date"): # 有时候没有这个时间，不清楚这两个的时间区别是啥...
+        p_time = soup.find(class_ = "secondary-date").get_text().strip().strip('Epub ').strip('.') 
+    else:
+        p_time = soup.find(class_ = "cit").get_text().split(";")[0]
 
     # PMID 
     PMID = soup.find(class_ = "current-id").get_text()
