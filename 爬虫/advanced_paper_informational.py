@@ -1,15 +1,14 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-from selenium.webdriver import ActionChains   #这个也是
-from selenium.webdriver.support.ui import Select # 这个也是
+from selenium.webdriver import ActionChains 
+from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys  #这个没有用上
 import time,os,re
 browser = webdriver.Chrome()
 url = 'https://pubmed.ncbi.nlm.nih.gov/'
-browser.get(url)
-time.sleep(2)
 
 out = open('paper_information.xls', 'w')
+doi_list = ['DOI: 10.1053/j.gastro.2020.05.004', 'DOI: 10.1038/s41577-019-0268-7', 'DOI: 10.1038/s41579-019-0213-6']
 
 # 杂志名称全称
 j_name = dict()
@@ -30,46 +29,47 @@ import pandas as pd
 dt = pd.read_table('/Users/Pezai/Documents/文献/IF_2019.txt', index_col = 1)
 IF_dict = dt['Journal Impact Factor'].to_dict()
 
-#下边这个是文献名字list
-title_list = ['Gut microbiome and serum metabolome alterations in obesity and after weight-loss intervention', 'Distinct gut metagenomics and metaproteomics signatures in prediabetics and treatment-naïve type 2 diabetics']
-
-for x in title_list:
-    browser.find_element_by_xpath('//*[@name="term"]').clear() #清除搜索框的东西；
+for x in doi_list:
+    DOI = x
+    browser.get(url)
+    time.sleep(3)
     browser.find_element_by_xpath('//*[@name="term"]').send_keys(x)
     browser.find_element_by_xpath('//*[@class="search-btn"]').click()
-    time.sleep(5)
+    time.sleep(2)
     soup = BeautifulSoup(browser.page_source, "html.parser")
     
-    if soup.find(class_ = "matching-citations search-results-list"):   #有时候不能直接反馈检索的结果...
-        browser.find_element_by_xpath('//*[@class="labs-docsum-title"]').click()
-        soup = BeautifulSoup(browser.page_source, "html.parser")   
-        journal = soup.find(id = "full-view-journal-trigger").get_text().strip()
-    else:
-        journal = soup.find(id = "full-view-journal-trigger").get_text().strip()
+    # journal name abbr
+    journal = soup.find(id = "full-view-journal-trigger").get_text().strip()
 
+    # title
+    title = soup.find(class_ = "heading-title").get_text().strip()
+        
     # IF
     for x in IF_dict:
-        match = re.search(j_name[journal], x, flags=re.IGNORECASE)
+        match = re.search('^' + j_name[journal] + '$', x, flags=re.IGNORECASE) # 有的名字包含其他杂志的全称... 
         if match:
             IF = IF_dict[x]
+            journal_name = j_name[journal]
+        else:
+            match = re.search('^' + j_name[journal].replace('.','') + '$', x, flags=re.IGNORECASE)  # 有的杂志匹配出来的全称多了个点：Nature reviews. Immunology
+            if match:
+                journal_name = j_name[journal].replace('.','')
+                IF = IF_dict[x]
 
 
     # 发表时间
-    if soup.find(class_ = "secondary-date"): # 有时候没有这个时间，不清楚这两个的时间区别是啥...
-        p_time = soup.find(class_ = "secondary-date").get_text().strip().strip('Epub ').strip('.') 
+    if soup.find(class_ = "secondary-date"):
+        p_time = soup.find(class_ = "secondary-date").get_text().strip().strip('Epub ').strip('.')
     else:
         p_time = soup.find(class_ = "cit").get_text().split(";")[0]
 
     # PMID 
     PMID = soup.find(class_ = "current-id").get_text()
 
-    # DOI
-    doi = soup.find(class_ = "id-link").get_text().strip()
-    doi = 'DOI: ' + doi
 
     #原文链接
     doi_info = soup.find(class_ = "identifier doi") 
-    http = doi_info.find(class_ = "id-link")['href'] # 增加这一步是因为偶尔会出现 NCBI 的链接，这样就只会爬取 doi 的官网链接了；
+    http = doi_info.find(class_ = "id-link")['href'] # 增加这一步是因为偶尔会出现 NCBI 的链接
 
     # 一作和通讯
     authors = soup.find(class_ = "authors-list").get_text().strip().replace(u'\xa0', '').replace(u'\xa0', '').replace(' ', '')
@@ -83,7 +83,7 @@ for x in title_list:
     affiliations_list = re.sub('[\n]{2,}', '', affiliations).split('\n')
     first_affiliation = affiliations_list[1].lstrip(' 0123456789')
 
-    line = '\t'.join([j_name[journal], p_time, PMID, doi, http, IF, first_author, corresponding_author, first_affiliation])
+    line = '\t'.join([title, journal_name, p_time, PMID, DOI, http, IF, first_author, corresponding_author, first_affiliation])
     print(line, file = out)
     print(line)
     
