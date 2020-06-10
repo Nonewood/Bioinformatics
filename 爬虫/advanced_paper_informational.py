@@ -4,19 +4,27 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys  #这个没有用上
 import time,os,re
-browser = webdriver.Chrome()
+
+# browser = webdriver.Chrome()  # 这个是模拟浏览器打开.. 
+op = webdriver.ChromeOptions()
+op.add_argument('headless')
+browser = webdriver.Chrome(options=op) #op 这三行可以不用打开浏览器..
 url = 'https://pubmed.ncbi.nlm.nih.gov/'
 
-out = open('paper_information.xls', 'w')
-doi_list = ['DOI: 10.1053/j.gastro.2020.05.004', 'DOI: 10.1038/s41577-019-0268-7', 'DOI: 10.1038/s41579-019-0213-6']
 
+out = open('paper_information.xls', 'w')
+doi_list = ['DOI: 10.1016/S0140-6736(19)32319-0', 'DOI: 10.1038/s41575-019-0209-8','DOI: 10.1016/j.tips.2019.04.006','DOI: 10.1038/nrc2857', 'DOI: 10.1038/ismej.2015.11', 'DOI: 10.1038/s41591-018-0160-1']          
+        
 # 杂志名称全称
 j_name = dict()
-with open('/Users/PeZai/Downloads/J_Medline.txt', 'r') as IN:
+with open('J_Medline.txt', 'r') as IN:
     for line in IN:
         line = line.strip('\n')
-        if line.startswith('JournalTitle'):
-            match = re.search('JournalTitle: (.*)', line)
+        if line.startswith('JournalTitle'): 
+            if re.search(' \(.*\)', line): #发现有带（London, England）这种信息的。。。。
+                match = re.search('JournalTitle: (.*) \(.*\)', line) 
+            else:
+                match = re.search('JournalTitle: (.*)', line) # ncbi 是缩写，然后影响因子是全称，所以得找到这个信息
             full = match.group(1)
         if line.startswith('MedAbbr'):
             match = re.search('MedAbbr: (.*)', line)
@@ -26,7 +34,7 @@ with open('/Users/PeZai/Downloads/J_Medline.txt', 'r') as IN:
             
 # 杂志 IF
 import pandas as pd
-dt = pd.read_table('/Users/Pezai/Documents/文献/IF_2019.txt', index_col = 1)
+dt = pd.read_table('IF_2019.txt', index_col = 1)
 IF_dict = dt['Journal Impact Factor'].to_dict()
 
 for x in doi_list:
@@ -34,6 +42,7 @@ for x in doi_list:
     browser.get(url)
     time.sleep(3)
     browser.find_element_by_xpath('//*[@name="term"]').send_keys(x)
+    time.sleep(2)
     browser.find_element_by_xpath('//*[@class="search-btn"]').click()
     time.sleep(2)
     soup = BeautifulSoup(browser.page_source, "html.parser")
@@ -83,7 +92,7 @@ for x in doi_list:
     affiliations_list = re.sub('[\n]{2,}', '', affiliations).split('\n')
     first_affiliation = affiliations_list[1].lstrip(' 0123456789')
 
-    line = '\t'.join([title, journal_name, p_time, PMID, DOI, http, IF, first_author, corresponding_author, first_affiliation])
+    line = '\t'.join([title, journal_name, p_time.replace('.', ''), PMID, DOI, http, IF, first_author, corresponding_author, first_affiliation])
     print(line, file = out)
     print(line)
     
