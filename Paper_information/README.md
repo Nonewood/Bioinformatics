@@ -3,7 +3,7 @@ Based on doi, you can use this script to crawl information about paper such as t
 
 The scihub.py were edited based on [scihub.py/scihub.py at master · zaytoun/scihub.py · GitHub](https://github.com/zaytoun/scihub.py/blob/master/scihub/scihub.py)
 
-Before use, you need to install some packages or sofeware, including phantomjs, Selenium, BS4 for advanced_paper_informational.py (based on selenium) and requests, retrying, pysocks (based on requests).  
+Before use, you need to install some packages or sofeware, including phantomjs, Selenium, BS4 for advanced_paper_informational.py (based on selenium) and requests, retrying, pysocks for scihub.py (based on requests).  
 
 You should also add these to your envirment variable (export or edit the .bashrc file)
 
