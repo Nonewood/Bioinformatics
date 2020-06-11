@@ -48,7 +48,7 @@ if files:
 out = open('paper_information.xls', 'w')
 
 ## scraping 
-print(user_full + ' is crawling... \nThe warnging information appeared later does not matter. \nIt may need some time, please wait patiently:)\nIf there is no output for a long long time, you should stop it and try to run again.\n')
+print(user_full + ' is crawling... \nThe warning information appeared later does not matter. \nIt may need some time, please wait patiently:)\nIf there is no output for a long long time, you should stop it and try to run again.\n')
 
 browser = webdriver.PhantomJS() 
 url = 'https://pubmed.ncbi.nlm.nih.gov/'
