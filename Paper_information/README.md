@@ -12,7 +12,7 @@ You should also add these to your envirment variable (export or edit the .bashrc
 
 scihub.py 是在这个链接上基础稍微改动一点儿得到的： [scihub.py/scihub.py at master · zaytoun/scihub.py · GitHub](https://github.com/zaytoun/scihub.py/blob/master/scihub/scihub.py)。
 
-使用之前，你可能需要安装一些软件或者包，比如 phantomjs, Selenium, BS4 (advanced_paper_informational.py，基于 selenium 爬取) 和 requests, retrying, pysocks (基于 requests 爬取)。  
+使用之前，你可能需要安装一些软件或者包，比如 phantomjs, Selenium, BS4 (advanced_paper_informational.py，基于 selenium 爬取) 和 requests, retrying, pysocks (scihub.py，基于 requests 爬取)。  
 然后记得添加至环境变量。
 
 ## 大道理  
