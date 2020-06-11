@@ -22,12 +22,12 @@ parser.add_argument('-l','--onedoi', nargs='?', help = "DOI information.")
 parser.add_argument('-f','--filelist',nargs='?', help = "the DOI information list file.")
 parser.add_argument("-v", "--version",action='version', version='%(prog)s 1.0')
 args = parser.parse_args()
-var	 = args.onedoi
+var = args.onedoi
 files = args.filelist 
 
-## define the user for print  
+## define the user（linux） and abbreviatio for print  
 import re
-Dict = {'wangpeng7':'WP', 'huangyf':'HYF', 'lianglifeng':'LIF'}
+Dict = {'zhangSan':'ZS', 'LiSi':'LS'}
 import os
 user_full = os.popen('whoami').readlines()[0].strip()
 if user_full in Dict:
@@ -55,7 +55,7 @@ url = 'https://pubmed.ncbi.nlm.nih.gov/'
         
 # 杂志名称全称
 j_name = dict()
-with open('/zfssz5/BC_PS/wangpeng7/Script/J_Medline.txt', 'r') as IN:
+with open('files/J_Medline.txt', 'r') as IN:
     for line in IN:
         line = line.strip('\n')
         if line.startswith('JournalTitle'):
@@ -73,7 +73,7 @@ with open('/zfssz5/BC_PS/wangpeng7/Script/J_Medline.txt', 'r') as IN:
             
 # 杂志 IF
 import pandas as pd
-dt = pd.read_table('/zfssz5/BC_PS/wangpeng7/Script/IF_2019.txt', index_col = 1)
+dt = pd.read_table('files/IF_2019.txt', index_col = 1)
 IF_dict = dt['Journal Impact Factor'].to_dict()
 
 for x in doi_list:
