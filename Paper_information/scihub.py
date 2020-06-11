@@ -6,7 +6,7 @@ Sci-API Unofficial API
 
 @author zaytoun
 
-edited bu wangpeng on 20200610
+Edited by Nonewood on 20200610
 """
 
 import re
@@ -52,10 +52,10 @@ class SciHub(object):
         Finds available scihub urls via https://whereisscihub.now.sh/
         '''
         urls = []
-        s = requests.Session()
+        s = requests.Session() #add these line
         retries = retry(total=10, backoff_factor=1, status_forcelist=[502,503,504], wait_exponential_multiplier=1000, wait_exponential_max=10000)
         s.mount('http://', HTTPAdapter(max_retries=retries))
-        res = s.get("https://sci-hub.now.sh")
+        res = s.get("https://sci-hub.now.sh") #change the url for sci-hub
         if res.status_code != 200:
 	        print('\nAO, the page code is ' + str(res.status_code) + ', something wrong!\n Please run again =.=||')
         s = self._get_soup(res.content)
